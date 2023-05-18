@@ -1,5 +1,7 @@
 import 'package:exhalapp/pages/homepage/bt_off_screen.dart';
 import 'package:exhalapp/pages/homepage/homepage.dart';
+import 'package:exhalapp/widgets/bt_permission_page/bt_denied.dart';
+import 'package:exhalapp/widgets/bt_permission_page/bt_granted.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -15,100 +17,19 @@ class _BTPermissionPageState extends State<BTPermissionPage> {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+    
     getBtPermission();
 
     /* ==================== IF BT PERMISSION IS DENIED ==================== */
     if (btPermission == false) {
-      return Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-            /* ==================== EXHALAPP LOGO ==================== */
-              Padding(
-                padding: EdgeInsets.only(
-                  top: height * 0.3,
-                  bottom: height * 0.17,
-                ),
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.75,
-                  child: Image.asset(
-                    'assets/images/Logo-EXHALAPP_color.png',
-                  ),
-                ),
-              ),
-            /* ==================== END EXHALAPP LOGO ==================== */
-
-            /* ==================== PERMISSION TEXT ==================== */
-              SizedBox(
-                width: width * 0.595,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    'Debe conceder permisos de "Dispositivos cercanos" para poder acceder a las funciones.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: const Color(0xFF676767),
-                      fontSize: (height * width) * 0.000045,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ),
-                ),
-              ),
-            /* ==================== END PERMISSION TEXT ==================== */
-
-            /* ==================== PERMISSION BUTTON ==================== */
-              Padding(
-                padding: EdgeInsets.only(top: height * 0.022),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.all(height * 0.018),
-                    shape: const StadiumBorder(),
-                    side: const BorderSide(width: 2, color: Color(0xFF00C0FF))),
-                  onPressed: () async {
-                    await Permission.bluetoothScan.request();
-                    if (await Permission.bluetoothScan.isDenied) {
-                      openAppSettings();
-                    }
-                  },
-                child: const Text("Conceder permiso")),
-              ),
-            /* ==================== END PERMISSION BUTTON ==================== */
-            ],
-          )
-        ),
-      );
+      return const BTDeniedScaffold();
     /* ==================== END IF BT PERMISSION IS DENIED ==================== */
 
-    /* ==================== IF BT PERMISSION IS ENABLED ==================== */
+    /* ==================== IF BT PERMISSION IS GRANTED ==================== */
     } else {
-      return Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-            /* ==================== EXHALAPP LOGO ==================== */
-              Padding(
-                padding: EdgeInsets.only(
-                  top: height * 0.3,
-                  bottom: height * 0.17,
-                ),
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.75,
-                  child: Image.asset(
-                    'assets/images/Logo-EXHALAPP_color.png',
-                  ),
-                ),
-              ),
-            /* ==================== END EXHALAPP LOGO ==================== */
-            ],
-          )
-        ),
-      );
+      return const BTGrantedScaffold();
     }
-    /* ==================== END IF BT PERMISSION IS ENABLED ==================== */
+    /* ==================== END IF BT PERMISSION IS GRANTED ==================== */
   }
 
   void getBtPermission() async {
