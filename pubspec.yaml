@@ -9,6 +9,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_blue_plus: ^1.4.0
+  community_charts_flutter: ^1.0.1
+  provider: ^6.0.5
+  shared_preferences: ^2.1.0
+  path_provider: ^2.0.14
+  android_path_provider: ^0.3.0
+  permission_handler: ^10.2.0
+  location: ^4.4.0
+  bluetooth_enable_fork: ^0.1.6
 
 dev_dependencies:
   flutter_test:
@@ -17,3 +26,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/ISO_EXHALAPP.png
+    - assets/images/Logo-EXHALAPP_color.png

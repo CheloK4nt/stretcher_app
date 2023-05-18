@@ -1,3 +1,5 @@
+import 'package:exhalapp/pages/bt_permission_page/bt_permission_page.dart';
+import 'package:exhalapp/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,11 +12,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+      home: BTPermissionPage(),
     );
   }
 }
