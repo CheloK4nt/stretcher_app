@@ -1,5 +1,13 @@
 [
     {
+        "merged": "com.example.exhalapp-merged_res-17:/drawable-night-v21_background.png.flat",
+        "source": "com.example.exhalapp-main-10:/drawable-night-v21/background.png"
+    },
+    {
+        "merged": "com.example.exhalapp-merged_res-17:/drawable-night_background.png.flat",
+        "source": "com.example.exhalapp-main-10:/drawable-night/background.png"
+    },
+    {
         "merged": "com.example.exhalapp-merged_res-17:/mipmap-xxhdpi_ic_launcher.png.flat",
         "source": "com.example.exhalapp-main-10:/mipmap-xxhdpi/ic_launcher.png"
     },
@@ -10,6 +18,10 @@
     {
         "merged": "com.example.exhalapp-merged_res-17:/drawable_launch_background.xml.flat",
         "source": "com.example.exhalapp-main-10:/drawable/launch_background.xml"
+    },
+    {
+        "merged": "com.example.exhalapp-merged_res-17:/drawable-night-v21_launch_background.xml.flat",
+        "source": "com.example.exhalapp-main-10:/drawable-night-v21/launch_background.xml"
     },
     {
         "merged": "com.example.exhalapp-merged_res-17:/drawable-v21_launch_background.xml.flat",
@@ -24,7 +36,19 @@
         "source": "com.example.exhalapp-main-10:/mipmap-xxxhdpi/ic_launcher.png"
     },
     {
+        "merged": "com.example.exhalapp-merged_res-17:/drawable-v21_background.png.flat",
+        "source": "com.example.exhalapp-main-10:/drawable-v21/background.png"
+    },
+    {
         "merged": "com.example.exhalapp-merged_res-17:/mipmap-xhdpi_ic_launcher.png.flat",
         "source": "com.example.exhalapp-main-10:/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.example.exhalapp-merged_res-17:/drawable-night_launch_background.xml.flat",
+        "source": "com.example.exhalapp-main-10:/drawable-night/launch_background.xml"
+    },
+    {
+        "merged": "com.example.exhalapp-merged_res-17:/drawable_background.png.flat",
+        "source": "com.example.exhalapp-main-10:/drawable/background.png"
     }
 ]

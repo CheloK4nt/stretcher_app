@@ -18,11 +18,22 @@ dependencies:
   permission_handler: ^10.2.0
   location: ^4.4.0
   bluetooth_enable_fork: ^0.1.6
+  flutter_native_splash:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+
+flutter_native_splash:
+  color: "#0071E4"
+  color_dark: "#0071E4"
+
+  android_12:
+    icon_background_color: "#0071E4"
+    icon_background_color_dark: "#0071E4"
+
+  web: false
 
 flutter:
   uses-material-design: true

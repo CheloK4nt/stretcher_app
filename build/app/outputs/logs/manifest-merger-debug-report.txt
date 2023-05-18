@@ -34,6 +34,7 @@ MERGED from [:permission_handler_android] C:\Users\desarrollador5.itisb\Document
 MERGED from [:flutter_blue_plus] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\flutter_blue_plus\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-25:12
 MERGED from [:path_provider_android] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\path_provider_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:location] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\location\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-20:12
+MERGED from [:flutter_native_splash] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\flutter_native_splash\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:android_path_provider] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\android_path_provider\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:bluetooth_enable_fork] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\bluetooth_enable_fork\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\desarrollador5.itisb\.gradle\caches\transforms-3\006d93cd422dbc43e89591147c2de572\transformed\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:17:1-23:12
@@ -104,6 +105,8 @@ MERGED from [:path_provider_android] C:\Users\desarrollador5.itisb\Documents\pro
 MERGED from [:path_provider_android] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\path_provider_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:location] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\location\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:location] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\location\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:flutter_native_splash] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\flutter_native_splash\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:flutter_native_splash] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\flutter_native_splash\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:android_path_provider] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\android_path_provider\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:android_path_provider] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\android_path_provider\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:bluetooth_enable_fork] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\bluetooth_enable_fork\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
