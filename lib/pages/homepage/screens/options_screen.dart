@@ -1,3 +1,5 @@
+import 'package:exhalapp/widgets/homepage/options_screen/dark_mode_sw.dart';
+import 'package:exhalapp/widgets/homepage/options_screen/open_app_settings.dart';
 import 'package:flutter/material.dart';
 
 class OptionsScreen extends StatefulWidget {
@@ -10,10 +12,21 @@ class OptionsScreen extends StatefulWidget {
 class _OptionsScreenState extends State<OptionsScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text("Options Screen"),
-      ),
+    return Center(
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 1,
+          title: const Text('Configuraciones'),
+        ),
+        body: ListView(
+          children: const [
+            DarkModeSwitch(),
+            Divider(thickness: 2,),
+            OpenAppSettings(),
+            Divider(thickness: 2,),
+          ],
+        ),
+      )
     );
   }
 }
