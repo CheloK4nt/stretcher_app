@@ -16,8 +16,6 @@ class BTGrantedScaffold extends StatefulWidget {
 class _BTGrantedScaffoldState extends State<BTGrantedScaffold> {
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
 
     return StreamBuilder<BluetoothState>(
       stream: FlutterBluePlus.instance.state,

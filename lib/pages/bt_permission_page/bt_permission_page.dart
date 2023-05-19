@@ -1,4 +1,3 @@
-import 'package:exhalapp/pages/homepage/bt_off_screen.dart';
 import 'package:exhalapp/pages/homepage/homepage.dart';
 import 'package:exhalapp/widgets/bt_permission_page/bt_denied.dart';
 import 'package:exhalapp/widgets/bt_permission_page/bt_granted.dart';

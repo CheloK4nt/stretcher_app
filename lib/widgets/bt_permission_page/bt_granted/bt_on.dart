@@ -1,3 +1,4 @@
+import 'package:exhalapp/pages/homepage/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 
@@ -81,9 +82,9 @@ class _BtOnWidgetsState extends State<BtOnWidgets> {
                     backgroundColor: Color(0xFF00C0FF),
                     shape: const CircleBorder()
                   ),
-                  onPressed: () {},
+                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => HomePage())),
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(height * width) * 0.000026,
                     child: Icon(
                       Icons.search,
                       size: (width * height) * 0.00015,
