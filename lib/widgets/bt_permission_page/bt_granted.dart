@@ -1,4 +1,10 @@
+import 'dart:ffi';
+
+import 'package:exhalapp/widgets/bt_permission_page/bt_granted/bt_loading.dart';
+import 'package:exhalapp/widgets/bt_permission_page/bt_granted/bt_off.dart';
+import 'package:exhalapp/widgets/bt_permission_page/bt_granted/bt_on.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 
 class BTGrantedScaffold extends StatefulWidget {
   const BTGrantedScaffold({super.key});
@@ -10,32 +16,28 @@ class BTGrantedScaffold extends StatefulWidget {
 class _BTGrantedScaffoldState extends State<BTGrantedScaffold> {
   @override
   Widget build(BuildContext context) {
-
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-          /* ==================== EXHALAPP LOGO ==================== */
-            Padding(
-              padding: EdgeInsets.only(
-                top: height * 0.3,
-                bottom: height * 0.17,
-              ),
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.75,
-                child: Image.asset(
-                  'assets/images/Logo-EXHALAPP_color.png',
-                ),
-              ),
-            ),
-          /* ==================== END EXHALAPP LOGO ==================== */
-          ],
-        )
-      ),
+    return StreamBuilder<BluetoothState>(
+      stream: FlutterBluePlus.instance.state,
+      initialData: BluetoothState.unknown,
+      builder: (c, snapshot) {
+        final state = snapshot.data;
+        /* ==================== IF BLUETOOTH ADAPTER IS OFF ===================== */
+        if (state == BluetoothState.off) {
+          return BtOffWidgets(state: state);
+        /* ==================== END IF BLUETOOTH ADAPTER IS OFF ===================== */
+
+        /* ==================== IF BLUETOOTH ADAPTER IS ON ===================== */
+        } else if (state == BluetoothState.on) {
+          return BtOnWidgets(state: state);
+        /* ==================== END IF BLUETOOTH ADAPTER IS ON ===================== */
+
+        } else {
+          return BtLoadingWidgets(state: state);
+        }
+      },
     );
   }
 }
