@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:bluetooth_enable_fork/bluetooth_enable_fork.dart';
 import 'package:exhalapp/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
@@ -13,7 +10,7 @@ class FindDevicesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF0071E4),
+        backgroundColor: const Color(0xFF0071E4),
         title: const Text("Lista de dispositivos"),
       ),
       body: RefreshIndicator(

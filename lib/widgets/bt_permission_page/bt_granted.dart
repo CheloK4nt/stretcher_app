@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:exhalapp/widgets/bt_permission_page/bt_granted/bt_loading.dart';
 import 'package:exhalapp/widgets/bt_permission_page/bt_granted/bt_off.dart';
 import 'package:exhalapp/widgets/bt_permission_page/bt_granted/bt_on.dart';

@@ -49,7 +49,7 @@ class _BtOffWidgetsState extends State<BtOffWidgets> {
                     Icon(
                       Icons.bluetooth_disabled_outlined,
                       size: height * 0.2,
-                      color: Color(0xFFA8A9A9),
+                      color: const Color(0xFFA8A9A9),
                     ),
                     Positioned(
                       left: width * 0.28,
@@ -58,7 +58,7 @@ class _BtOffWidgetsState extends State<BtOffWidgets> {
                       Icon(
                         Icons.highlight_off,
                         size: height * 0.05,
-                        color: Color(0xFF7A7A7A),
+                        color: const Color(0xFF7A7A7A),
                       ),
                     )
                   ],

@@ -26,11 +26,18 @@ class _DarkModeSwitchState extends State<DarkModeSwitch> {
   @override
   Widget build(BuildContext context) {
     return SwitchListTile(
+      inactiveThumbColor: const Color(0xFF0071E4),
+      inactiveTrackColor: const Color(0xFFD9D9D9),
       value: _darkMode,
-      title: const Text(
-        'Modo oscuro',
-        style: TextStyle(
-          fontSize: 14
+      title: Padding(
+        padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.01),
+        child: const Text(
+          'Modo oscuro',
+          style: TextStyle(
+            color: Color(0xFF676767),
+            fontSize: 14,
+            fontWeight: FontWeight.bold
+          ),
         ),
       ),
       subtitle: const Text(

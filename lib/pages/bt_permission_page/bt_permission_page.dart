@@ -1,8 +1,6 @@
-import 'package:exhalapp/pages/homepage/homepage.dart';
 import 'package:exhalapp/widgets/bt_permission_page/bt_denied.dart';
 import 'package:exhalapp/widgets/bt_permission_page/bt_granted.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class BTPermissionPage extends StatefulWidget {

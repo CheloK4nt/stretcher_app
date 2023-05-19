@@ -44,7 +44,7 @@ class _BtOnWidgetsState extends State<BtOnWidgets> {
                 child: Icon(
                   Icons.bluetooth,
                   size: height * 0.2,
-                  color: Color(0xFF0071E4),
+                  color: const Color(0xFF0071E4),
                 ),
               ),
             /* ==================== END BLUETOOTH ON ICON ==================== */
@@ -79,10 +79,10 @@ class _BtOnWidgetsState extends State<BtOnWidgets> {
                 padding: EdgeInsets.only(top: height * 0.08, bottom: height * 0.02),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF00C0FF),
+                    backgroundColor: const Color(0xFF00C0FF),
                     shape: const CircleBorder()
                   ),
-                  onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => HomePage())),
+                  onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const HomePage())),
                   child: Padding(
                     padding: EdgeInsets.all(height * width) * 0.000026,
                     child: Icon(
@@ -98,7 +98,7 @@ class _BtOnWidgetsState extends State<BtOnWidgets> {
               Text(
                 "Buscar dispositivos disponibles",
                 style: TextStyle(
-                  color: Color(0xFF676767),
+                  color: const Color(0xFF676767),
                   fontSize: (height * width) * 0.00004,
                   fontWeight: FontWeight.w300,
                 ),

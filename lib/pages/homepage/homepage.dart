@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
       builder: (c, snapshot) {
         final state = snapshot.data;
         if (state == BluetoothState.off) {
-          return BTGrantedScaffold();
+          return const BTGrantedScaffold();
         } else {
           return WillPopScope(
 
@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> {
                 size: (height * width) * 0.0001,
               ),
               label: "Dispositivos",
-              backgroundColor: Color(0xFF0071E4),
+              backgroundColor: const Color(0xFF0071E4),
             ),
             /* -------------------- END DEVICES BOTTOM NAVIGATION BAR ITEM -------------------- */
             
@@ -99,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                 size: (height * width) * 0.0001,
               ),
               label: "Opciones",
-              backgroundColor: Color(0xFF0071E4),
+              backgroundColor: const Color(0xFF0071E4),
             ),
             /* -------------------- END OPTIONS BOTTOM NAVIGATION BAR ITEM -------------------- */
           ]
@@ -119,7 +119,7 @@ class _HomePageState extends State<HomePage> {
               );
             } else {
               return FloatingActionButton(
-                backgroundColor: Color(0xFF00C0FF),
+                backgroundColor: const Color(0xFF00C0FF),
                   child: const Icon(Icons.search),
                   onPressed: () async {
                     if (await Permission.location.isGranted) {
@@ -128,9 +128,9 @@ class _HomePageState extends State<HomePage> {
                       if (!isOn) { //if defvice is off
                         bool isturnedon = await location.requestService();
                         if (isturnedon) {
-                            print("GPS device is turned ON");
+                          print("GPS device is turned ON");
                         }else{
-                            print("GPS Device is still OFF");
+                          print("GPS Device is still OFF");
                         }
                       } else {
                         FlutterBluePlus.instance.startScan(timeout: const Duration(seconds: 4));

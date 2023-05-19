@@ -45,7 +45,7 @@ class _BtLoadingWidgetsState extends State<BtLoadingWidgets> {
                     Icon(
                       Icons.bluetooth_disabled_outlined,
                       size: height * 0.2,
-                      color: Color(0xFFA8A9A9),
+                      color: const Color(0xFFA8A9A9),
                     ),
                     Positioned(
                       left: width * 0.28,

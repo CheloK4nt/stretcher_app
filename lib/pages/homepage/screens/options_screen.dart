@@ -15,6 +15,7 @@ class _OptionsScreenState extends State<OptionsScreen> {
     return Center(
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: const Color(0xFF0071E4),
           elevation: 1,
           title: const Text('Configuraciones'),
         ),

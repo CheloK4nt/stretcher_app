@@ -12,9 +12,19 @@ class _OpenAppSettingsState extends State<OpenAppSettings> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text("Ir a ajustes"),
-      subtitle: Text("Configuración de la app. Puedes configurar los permisos, entre otras opciones."),
-      trailing: Icon(Icons.arrow_forward_ios_outlined),
+      title: const Text(
+        "Ir a ajustes",
+        style: TextStyle(
+        fontWeight: FontWeight.bold,
+        color: Color(0xFF676767)
+        ),
+      ),
+      subtitle: const Text("Configuración de la app. Puedes configurar los permisos, entre otras opciones."),
+      trailing: Icon(
+        Icons.swipe_right_alt_outlined,
+        size: MediaQuery.of(context).size.height * 0.05,
+        color: const Color(0xFF0071E4),
+      ),
       onTap: () => openAppSettings(),
     );
   }
