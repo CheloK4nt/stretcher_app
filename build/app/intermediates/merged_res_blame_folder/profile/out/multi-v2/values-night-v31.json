@@ -1,0 +1,28 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.example.exhalapp-mergeProfileResources-15:/values-night-v31/values-night-v31.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\desarrollador5.itisb\\Documents\\proyectos\\FlutterProyects\\exhalapp\\android\\app\\src\\main\\res\\values-night-v31\\styles.xml",
+                    "from": {
+                        "startLines": "3,17",
+                        "startColumns": "4,4",
+                        "startOffsets": "176,1053",
+                        "endLines": "10,19",
+                        "endColumns": "12,12",
+                        "endOffsets": "695,1219"
+                    },
+                    "to": {
+                        "startLines": "2,10",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,572",
+                        "endLines": "9,12",
+                        "endColumns": "12,12",
+                        "endOffsets": "567,736"
+                    }
+                }
+            ]
+        }
+    ]
+}
