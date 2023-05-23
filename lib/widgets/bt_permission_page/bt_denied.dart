@@ -65,6 +65,7 @@ class _BTDeniedScaffoldState extends State<BTDeniedScaffold> {
                   padding: EdgeInsets.only(top: height * 0.022),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF0071E4),
                       padding: EdgeInsets.all(height * 0.018),
                       shape: const StadiumBorder(),
                       side: const BorderSide(width: 2, color: Color(0xFF00C0FF))),

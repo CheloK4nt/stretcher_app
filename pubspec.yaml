@@ -28,6 +28,7 @@ dev_dependencies:
 flutter_native_splash:
   color: "#0071E4"
   color_dark: "#0071E4"
+  image: "assets/images/ISO_EXHALAPP.png"
 
   android_12:
     icon_background_color: "#0071E4"

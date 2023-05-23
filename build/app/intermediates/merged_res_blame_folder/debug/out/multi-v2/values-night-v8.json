@@ -6,6 +6,30 @@
                 {
                     "source": "C:\\Users\\desarrollador5.itisb\\Documents\\proyectos\\FlutterProyects\\exhalapp\\android\\app\\src\\main\\res\\values-night\\styles.xml",
                     "from": {
+                        "startLines": "3,-1",
+                        "startColumns": "4,-1",
+                        "startOffsets": "172,-1",
+                        "endLines": "11,-1",
+                        "endColumns": "12,-1",
+                        "endOffsets": "747,-1"
+                    },
+                    "to": {
+                        "startLines": "2,10",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,507",
+                        "endLines": "9,12",
+                        "endColumns": "12,12",
+                        "endOffsets": "502,671"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "C:\\Users\\desarrollador5.itisb\\.gradle\\daemon\\7.5\\com.example.exhalapp-mergeDebugResources-15:\\values-night-v8\\values-night-v8.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\desarrollador5.itisb\\Documents\\proyectos\\FlutterProyects\\exhalapp\\android\\app\\src\\main\\res\\values-night\\styles.xml",
+                    "from": {
                         "startLines": "3,18",
                         "startColumns": "4,4",
                         "startOffsets": "175,1106",

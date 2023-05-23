@@ -167,16 +167,32 @@ class _HomePageState extends State<HomePage> {
         actions: [
           TextButton(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(const Color.fromARGB(255, 218, 243, 255)),
+              backgroundColor: MaterialStateProperty.all(const Color(0xFFBDEFFF)),
+              overlayColor: MaterialStateProperty.all(const Color.fromARGB(255, 113, 170, 187)),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  side: const BorderSide(color: Color(0xFF0071E4))
+                ),
+              ),
             ),
             onPressed: () async {
               await Permission.location.request();
+              // ignore: use_build_context_synchronously
               Navigator.of(context).pop(false);
               if (await Permission.location.isDenied) {
                 openAppSettings();
               }
             },
-            child: const Text("Conceder Permiso")
+            child: const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                "Conceder Permiso",
+                style: TextStyle(
+                  color: Color(0xFF2F2F2F),
+                ),
+              ),
+            )
           ),
         ],
       ),

@@ -20,7 +20,7 @@ class _OpenAppSettingsState extends State<OpenAppSettings> {
       ),
       subtitle: const Text(
         "Configuración de la app. Puedes configurar los permisos, entre otras opciones.",
-        style: TextStyle(fontWeight: FontWeight.w200),
+        style: TextStyle(fontWeight: FontWeight.w300),
       ),
       trailing: Icon(
         Icons.chevron_right,
