@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:bluetooth_enable_fork/bluetooth_enable_fork.dart';
+import 'package:exhalapp/providers/shared_pref.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 
@@ -19,6 +20,8 @@ class _BtOffWidgetsState extends State<BtOffWidgets> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
+    final prefs = UserPrefs();
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Center(
@@ -35,7 +38,9 @@ class _BtOffWidgetsState extends State<BtOffWidgets> {
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width * 0.75,
                   child: Image.asset(
-                    'assets/images/Logo-EXHALAPP_color.png',
+                    (prefs.darkMode)
+                      ?'assets/images/Logo-EXHALAPP_blanco.png'
+                      :'assets/images/Logo-EXHALAPP_color.png'
                   ),
                 ),
               ),
@@ -70,24 +75,42 @@ class _BtOffWidgetsState extends State<BtOffWidgets> {
               (widget.state.toString().substring(15) == "turningOn")?
               RichText(
                 textAlign: TextAlign.center,
-                text: const TextSpan(
+                text: TextSpan(
                   text: 'Adaptador bluetooth se está\n',
-                  style: TextStyle(color: Color(0xFF676767,), fontWeight: FontWeight.w300),
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.tertiary,
+                    fontWeight: FontWeight.w300,
+                  ),
                   children: <TextSpan>[
-                    TextSpan(text: "encendiendo...", style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF676767)))
-                  ]
-                )
+                    TextSpan(
+                      text: "encendiendo...",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.tertiary,
+                      ),
+                    ),
+                  ],
+                ),
               )
               :
               RichText(
                 textAlign: TextAlign.center,
-                text: const TextSpan(
+                text: TextSpan(
                   text: 'Debe encender el adaptador\n',
-                  style: TextStyle(color: Color(0xFF676767), fontWeight: FontWeight.w300),
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.tertiary,
+                    fontWeight: FontWeight.w300
+                  ),
                   children: <TextSpan>[
-                    TextSpan(text: "Bluetooth.", style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF676767)))
-                  ]
-                )
+                    TextSpan(
+                      text: "Bluetooth.",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.tertiary,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             /* ==================== END STATUS TEXT ==================== */
       
@@ -98,6 +121,7 @@ class _BtOffWidgetsState extends State<BtOffWidgets> {
                   width: width * 0.4,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF0071E4),
                       padding: EdgeInsets.all(height * 0.018),
                       shape: const StadiumBorder(),
                       side: const BorderSide(width: 2, color: Color(0xFF00C0FF))),
@@ -106,7 +130,13 @@ class _BtOffWidgetsState extends State<BtOffWidgets> {
                         BluetoothEnable.enableBluetooth;
                       }
                       : null,
-                    child: const Text("Encender BT", style: TextStyle(fontWeight: FontWeight.bold),)
+                    child: const Text(
+                      "Encender BT",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ),
               ),

@@ -26,15 +26,12 @@ class _DarkModeSwitchState extends State<DarkModeSwitch> {
   @override
   Widget build(BuildContext context) {
     return SwitchListTile(
-      inactiveThumbColor: const Color(0xFF0071E4),
-      inactiveTrackColor: const Color(0xFFD9D9D9),
       value: _darkMode,
       title: Padding(
         padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.01),
         child: const Text(
           'Modo oscuro',
           style: TextStyle(
-            color: Color(0xFF676767),
             fontSize: 14,
             fontWeight: FontWeight.bold
           ),
@@ -42,6 +39,7 @@ class _DarkModeSwitchState extends State<DarkModeSwitch> {
       ),
       subtitle: const Text(
         'El modo oscuro no fuerza tanto tu visión por la noche y reduce el consumo de batería.',
+        style: TextStyle(fontWeight: FontWeight.w200),
       ),
       onChanged: (value){
         setState(() {

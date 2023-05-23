@@ -15,9 +15,9 @@ class _OptionsScreenState extends State<OptionsScreen> {
     return Center(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color(0xFF0071E4),
+          // backgroundColor: const Color(0xFF0071E4),
           elevation: 1,
-          title: const Text('Configuraciones'),
+          title: const Text('Opciones'),
         ),
         body: ListView(
           children: const [

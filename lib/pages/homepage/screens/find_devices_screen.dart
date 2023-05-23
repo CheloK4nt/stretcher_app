@@ -10,7 +10,7 @@ class FindDevicesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFF0071E4),
+        // backgroundColor: const Color(0xFF0071E4),
         title: const Text("Lista de dispositivos"),
       ),
       body: RefreshIndicator(
@@ -36,8 +36,7 @@ class FindDevicesScreen extends StatelessWidget {
                                     BluetoothDeviceState.connected) {
                                   return ElevatedButton(
                                     style: ElevatedButton.styleFrom(
-                                      backgroundColor:
-                                          Theme.of(context).primaryColorDark,
+                                      backgroundColor: Theme.of(context).primaryColorDark,
                                     ),
                                     onPressed: null,
                                     child: const Text('CONECTADO'),

@@ -1,4 +1,5 @@
 import 'package:exhalapp/pages/homepage/homepage.dart';
+import 'package:exhalapp/providers/shared_pref.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 
@@ -13,8 +14,11 @@ class BtOnWidgets extends StatefulWidget {
 class _BtOnWidgetsState extends State<BtOnWidgets> {
   @override
   Widget build(BuildContext context) {
+
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+
+    final prefs = UserPrefs();
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -32,7 +36,9 @@ class _BtOnWidgetsState extends State<BtOnWidgets> {
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width * 0.75,
                   child: Image.asset(
-                    'assets/images/Logo-EXHALAPP_color.png',
+                    (prefs.darkMode)
+                      ?'assets/images/Logo-EXHALAPP_blanco.png'
+                      :'assets/images/Logo-EXHALAPP_color.png'
                   ),
                 ),
               ),
@@ -53,22 +59,40 @@ class _BtOnWidgetsState extends State<BtOnWidgets> {
               (widget.state.toString().substring(15) == "turningOn")?
               RichText(
                 textAlign: TextAlign.center,
-                text: const TextSpan(
+                text: TextSpan(
                   text: 'Adaptador bluetooth se está\n',
-                  style: TextStyle(color: Color(0xFF676767,), fontWeight: FontWeight.w300),
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.tertiary,
+                    fontWeight: FontWeight.w300,
+                  ),
                   children: <TextSpan>[
-                    TextSpan(text: "encendiendo...", style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF676767)))
+                    TextSpan(
+                      text: "encendiendo...",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.tertiary,
+                      ),
+                    ),
                   ]
                 )
               )
               :
               RichText(
                 textAlign: TextAlign.center,
-                text: const TextSpan(
+                text: TextSpan(
                   text: 'Bluetooth',
-                  style: TextStyle(color: Color(0xFF676767), fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.tertiary,
+                    fontWeight: FontWeight.bold
+                  ),
                   children: <TextSpan>[
-                    TextSpan(text: " encendido.", style: TextStyle(fontWeight: FontWeight.w300, color: Color(0xFF676767)))
+                    TextSpan(
+                      text: " encendido.",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w300,
+                        color: Theme.of(context).colorScheme.tertiary,
+                      )
+                    )
                   ]
                 )
               ),
@@ -98,7 +122,7 @@ class _BtOnWidgetsState extends State<BtOnWidgets> {
               Text(
                 "Buscar dispositivos disponibles",
                 style: TextStyle(
-                  color: const Color(0xFF676767),
+                  color: Theme.of(context).colorScheme.tertiary,
                   fontSize: (height * width) * 0.00004,
                   fontWeight: FontWeight.w300,
                 ),

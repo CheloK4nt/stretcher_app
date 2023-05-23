@@ -1,3 +1,4 @@
+import 'package:exhalapp/providers/shared_pref.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 
@@ -12,8 +13,11 @@ class BtLoadingWidgets extends StatefulWidget {
 class _BtLoadingWidgetsState extends State<BtLoadingWidgets> {
   @override
   Widget build(BuildContext context) {
+
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+
+    final prefs = UserPrefs();
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -31,7 +35,9 @@ class _BtLoadingWidgetsState extends State<BtLoadingWidgets> {
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width * 0.75,
                   child: Image.asset(
-                    'assets/images/Logo-EXHALAPP_color.png',
+                    (prefs.darkMode)
+                      ?'assets/images/Logo-EXHALAPP_blanco.png'
+                      :'assets/images/Logo-EXHALAPP_color.png'
                   ),
                 ),
               ),
@@ -63,13 +69,22 @@ class _BtLoadingWidgetsState extends State<BtLoadingWidgets> {
               (widget.state.toString().substring(15) == "turningOn")?
               RichText(
                 textAlign: TextAlign.center,
-                text: const TextSpan(
+                text: TextSpan(
                   text: 'Adaptador bluetooth se está\n',
-                  style: TextStyle(color: Color(0xFF676767,), fontWeight: FontWeight.w300),
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.tertiary,
+                    fontWeight: FontWeight.w300
+                  ),
                   children: <TextSpan>[
-                    TextSpan(text: "encendiendo...", style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF676767)))
-                  ]
-                )
+                    TextSpan(
+                      text: "encendiendo...",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.tertiary,
+                      ),
+                    ),
+                  ],
+                ),
               )
               :
               RichText(

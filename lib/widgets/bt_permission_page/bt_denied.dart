@@ -1,3 +1,4 @@
+import 'package:exhalapp/providers/shared_pref.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -16,6 +17,8 @@ class _BTDeniedScaffoldState extends State<BTDeniedScaffold> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
+    final prefs = UserPrefs();
+
     return Scaffold(
         body: SingleChildScrollView(
           child: Center(
@@ -31,7 +34,9 @@ class _BTDeniedScaffoldState extends State<BTDeniedScaffold> {
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width * 0.75,
                     child: Image.asset(
-                      'assets/images/Logo-EXHALAPP_color.png',
+                      (prefs.darkMode)
+                      ?'assets/images/Logo-EXHALAPP_blanco.png'
+                      :'assets/images/Logo-EXHALAPP_color.png'
                     ),
                   ),
                 ),

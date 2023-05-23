@@ -1,4 +1,4 @@
-#Fri May 19 17:26:08 CLT 2023
+#Tue May 23 12:10:52 CLT 2023
 base.0=C\:\\Users\\desarrollador5.itisb\\Documents\\proyectos\\FlutterProyects\\exhalapp\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

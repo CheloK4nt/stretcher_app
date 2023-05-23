@@ -16,14 +16,15 @@ class _OpenAppSettingsState extends State<OpenAppSettings> {
         "Ir a ajustes",
         style: TextStyle(
         fontWeight: FontWeight.bold,
-        color: Color(0xFF676767)
         ),
       ),
-      subtitle: const Text("Configuración de la app. Puedes configurar los permisos, entre otras opciones."),
+      subtitle: const Text(
+        "Configuración de la app. Puedes configurar los permisos, entre otras opciones.",
+        style: TextStyle(fontWeight: FontWeight.w200),
+      ),
       trailing: Icon(
-        Icons.swipe_right_alt_outlined,
+        Icons.chevron_right,
         size: MediaQuery.of(context).size.height * 0.05,
-        color: const Color(0xFF0071E4),
       ),
       onTap: () => openAppSettings(),
     );

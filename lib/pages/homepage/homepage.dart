@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> {
                 size: (height * width) * 0.0001,
               ),
               label: "Dispositivos",
-              backgroundColor: const Color(0xFF0071E4),
+              backgroundColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor
             ),
             /* -------------------- END DEVICES BOTTOM NAVIGATION BAR ITEM -------------------- */
             
@@ -99,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                 size: (height * width) * 0.0001,
               ),
               label: "Opciones",
-              backgroundColor: const Color(0xFF0071E4),
+              backgroundColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor
             ),
             /* -------------------- END OPTIONS BOTTOM NAVIGATION BAR ITEM -------------------- */
           ]
@@ -120,7 +120,7 @@ class _HomePageState extends State<HomePage> {
             } else {
               return FloatingActionButton(
                 backgroundColor: const Color(0xFF00C0FF),
-                  child: const Icon(Icons.search),
+                  child: const Icon(Icons.search, color: Colors.white,),
                   onPressed: () async {
                     if (await Permission.location.isGranted) {
                       Location location = Location();
@@ -157,9 +157,13 @@ class _HomePageState extends State<HomePage> {
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
+        actionsAlignment: MainAxisAlignment.center,
         icon: const Icon(Icons.location_on_outlined),
         title: const Text('Ubicación'),
-        content: const Text('Debe conceder permiso de ubicación(precisa) en su dispositivo para encontrar dispositivos cercanos.'),
+        content: const Text(
+          'Debe conceder permiso de ubicación(precisa) en su dispositivo para encontrar dispositivos cercanos.',
+          textAlign: TextAlign.center,
+        ),
         actions: [
           TextButton(
             style: ButtonStyle(
