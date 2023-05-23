@@ -88,39 +88,39 @@ class ScanResultTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
     if (result.device.name.contains("ESP")) {
-      return ExpansionTile(
-        title: _buildTitle(context),
-        leading: Text(result.rssi.toString()),
-        trailing: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.black,
-            foregroundColor: Colors.white,
-          ),
-          onPressed: (result.advertisementData.connectable) ? onTap : null,
-          child: const Text('CONECTAR'),
+      return Padding(
+        padding: EdgeInsets.only(
+          left: width * 0.05,
+          right: width * 0.05,
+          top: height * 0.02,
+          bottom: height * 0.005,
         ),
-        children: <Widget>[
-          _buildAdvRow(context, 'Complete Local Name',
-              result.advertisementData.localName),
-          _buildAdvRow(context, 'Tx Power Level',
-              '${result.advertisementData.txPowerLevel ?? 'N/A'}'),
-          _buildAdvRow(
-              context,
-              'Manufacturer Data',
-              getNiceManufacturerData(
-                  result.advertisementData.manufacturerData)),
-          _buildAdvRow(
-              context,
-              'Service UUIDs',
-              (result.advertisementData.serviceUuids.isNotEmpty)
-                  ? result.advertisementData.serviceUuids
-                      .join(', ')
-                      .toUpperCase()
-                  : 'N/A'),
-          _buildAdvRow(context, 'Service Data',
-              getNiceServiceData(result.advertisementData.serviceData)),
-        ],
+        child: ListTile(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular((height * width) * 0.00006),
+            side: const BorderSide(
+              color: Color(0xFFD3D3D3)
+            )
+          ),
+          title: _buildTitle(context),
+          // leading: Text(result.rssi.toString()),
+          trailing: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFF00C0FF),
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular((height * width) * 0.00005),
+              )
+            ),
+            onPressed: (result.advertisementData.connectable) ? onTap : null,
+            child: const Text('CONECTAR'),
+          ),
+        ),
       );
     } else {
       return const SizedBox.shrink();
