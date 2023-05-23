@@ -112,6 +112,7 @@ class _BtOnWidgetsState extends State<BtOnWidgets> {
                     child: Icon(
                       Icons.search,
                       size: (width * height) * 0.00015,
+                      color: Colors.white,
                     ),
                   ),
                 ),
