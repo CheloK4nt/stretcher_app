@@ -1,3 +1,4 @@
+import 'package:exhalapp/pages/charts_page/start_exam_page.dart';
 import 'package:exhalapp/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
@@ -27,8 +28,8 @@ class FindDevicesScreen extends StatelessWidget {
                         (r) => ScanResultTile(
                           result: r,
                           onTap: (){
-                            // r.device.connect();
-                            // Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => StartExamPage(device: r.device)));
+                            r.device.connect();
+                            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => StartExamPage(device: r.device)));
                           }
                         ),
                       )
