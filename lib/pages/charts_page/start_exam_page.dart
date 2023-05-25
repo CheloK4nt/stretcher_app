@@ -170,17 +170,8 @@ class _StartExamPageState extends State<StartExamPage> {
                     :null,
                     child: const Text("Iniciar exámen", style: TextStyle(fontWeight: FontWeight.w400),),
                   )
-                  :Wrap(
-                    direction: Axis.vertical,
-                    children: [
-                      Text(
-                        "Descubriendo característica...",
-                        style: TextStyle(color: Theme.of(context).colorScheme.tertiary),
-                      ),
-                      const LinearProgressIndicator(
-                        color: Color(0xFF0071E4),
-                      ),
-                    ]
+                  :const LinearProgressIndicator(
+                    color: Color(0xFF0071E4),
                   ),
                 ),
               ],
