@@ -224,10 +224,8 @@ class _StartExamPageState extends State<StartExamPage> {
 
     List<BluetoothService> services = await widget.device.discoverServices();
     for (var service in services) {
-      print("SERVICE UUID: ${service.uuid.toString()}");
       if (service.uuid.toString() == SERVICE_UUID) {
         for (var characteristic in service.characteristics) {
-          print("CHARACTERISTIC UUID: ${characteristic.descriptors}");
           if (characteristic.uuid.toString() == CHARACTERISTIC_UUID) {
             characteristic.setNotifyValue(!characteristic.isNotifying);
             stream = characteristic.value;
@@ -239,8 +237,8 @@ class _StartExamPageState extends State<StartExamPage> {
             targetCharacteristic = characteristic;
             setState(() {
               tcReady = true;
+              isReady = true;
             });
-            print("targetCharacteristic LISTO!");
           }
         }
       }
