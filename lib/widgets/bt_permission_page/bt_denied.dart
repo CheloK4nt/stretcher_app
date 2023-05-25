@@ -75,7 +75,7 @@ class _BTDeniedScaffoldState extends State<BTDeniedScaffold> {
                         openAppSettings();
                       }
                     },
-                  child: const Text("Conceder permiso")),
+                  child: const Text("Conceder permiso", style: TextStyle(color: Colors.white),)),
                 ),
               /* ==================== END PERMISSION BUTTON ==================== */
               ],

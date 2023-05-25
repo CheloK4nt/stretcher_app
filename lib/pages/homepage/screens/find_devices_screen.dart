@@ -27,8 +27,11 @@ class FindDevicesScreen extends StatelessWidget {
                       .map(
                         (r) => ScanResultTile(
                           result: r,
-                          onTap: (){
-                            r.device.connect();
+                          onTap: () async {
+                            List<BluetoothDevice> connectedDevices = await FlutterBluePlus.instance.connectedDevices;
+                            if (!connectedDevices.contains(r.device)) {
+                              r.device.connect();
+                            }
                             Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => StartExamPage(device: r.device)));
                           }
                         ),

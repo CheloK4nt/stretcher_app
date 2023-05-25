@@ -32,13 +32,22 @@ class _StartExamPageState extends State<StartExamPage> {
     super.initState();
 
     isReady = false;
-    connectToDevice(); 
+    tryConnect();
+  }
+
+  void tryConnect() async{
+    List<BluetoothDevice> connectedDevices = await FlutterBluePlus.instance.connectedDevices;
+
+    if (connectedDevices.contains(widget.device)) {
+      discoverServices();
+    } else {
+      await connectToDevice();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
 
-    final prefs = UserPrefs();
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
@@ -50,7 +59,7 @@ class _StartExamPageState extends State<StartExamPage> {
         ),
         body: Container(
           child: !isReady
-          ? Center(
+          ?Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -67,106 +76,117 @@ class _StartExamPageState extends State<StartExamPage> {
               ],
             ),
           )
-          : Center(
+          :Center(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                padding: EdgeInsets.all((height * width) * 0.00009),
-                child: Text(
-                  "Seleccione el método de corte",
-                  style: TextStyle(
-                    fontSize: (height * width) * 0.00008,
-                    fontWeight: FontWeight.w200,
-                    color: Theme.of(context).colorScheme.tertiary,
+                  padding: EdgeInsets.all((height * width) * 0.00009),
+                  child: Text(
+                    "Seleccione el método de corte",
+                    style: TextStyle(
+                      fontSize: (height * width) * 0.00008,
+                      fontWeight: FontWeight.w200,
+                      color: Theme.of(context).colorScheme.tertiary,
+                    ),
                   ),
                 ),
-              ),
 
             /* ========== SELECTOR MODO DE CORTE ========== */
-            Wrap(
-              spacing: 5,
-              children: [
+                Wrap(
+                  spacing: 5,
+                  children: [
                 /* ========== BOTON CORTE MAX ========== */
-                InkWell(
-                  borderRadius: BorderRadius.circular(25),
-                  onTap: (){
-                    setState(() {
-                      selectedCut = "1";
-                    });
-                  },
-                  child: Ink(
-                    decoration: BoxDecoration(
-                      color: (selectedCut == "1")?Colors.blue :const Color(0xFFD9D9D9),
-                      borderRadius: BorderRadius.circular(25)
+                    InkWell(
+                      borderRadius: BorderRadius.circular(25),
+                      onTap: (){
+                        setState(() {
+                        selectedCut = "1";
+                        });
+                      },
+                      child: Ink(
+                        decoration: BoxDecoration(
+                          color: (selectedCut == "1")?Colors.blue :const Color(0xFFD9D9D9),
+                          borderRadius: BorderRadius.circular(25)
+                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 8),
+                        child: Text(
+                          "Máx.",
+                          style: TextStyle(color: (selectedCut == "1")?Colors.white :const Color(0xFF7A7A7A)),
+                        ),
+                      ),
                     ),
-                    padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 8),
-                    child: Text(
-                      "Máx.",
-                      style: TextStyle(color: (selectedCut == "1")?Colors.white :const Color(0xFF7A7A7A)),
-                    ),
-                  ),
-                ),
                 /* ========== FIN BOTON CORTE MAX ========== */
           
                 /* ========== BOTON CORTE C50 ========== */
-                InkWell(
-                  borderRadius: BorderRadius.circular(25),
-                  onTap: (){
-                    setState(() {
-                      selectedCut = "2";
-                    });
-                  },
-                  child: Ink(
-                    decoration: BoxDecoration(
-                      color: (selectedCut == "2")?Colors.blue :const Color(0xFFD9D9D9),
-                      borderRadius: BorderRadius.circular(25)
+                    InkWell(
+                      borderRadius: BorderRadius.circular(25),
+                      onTap: (){
+                        setState(() {
+                          selectedCut = "2";
+                        });
+                      },
+                      child: Ink(
+                        decoration: BoxDecoration(
+                          color: (selectedCut == "2")?Colors.blue :const Color(0xFFD9D9D9),
+                          borderRadius: BorderRadius.circular(25)
+                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 8),
+                        child: Text(
+                          "C50.",
+                          style: TextStyle(color: (selectedCut == "2")?Colors.white :const Color(0xFF7A7A7A)),
+                        ),
+                      ),
                     ),
-                    padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 8),
-                    child: Text(
-                      "C50.",
-                      style: TextStyle(color: (selectedCut == "2")?Colors.white :const Color(0xFF7A7A7A)),
-                    ),
-                  ),
-                ),
                 /* ========== FIN BOTON CORTE C50 ========== */
-              ],
-            ),
-            /* ========== FIN SELECTOR MODO DE CORTE ========== */
-            Padding(
-              padding: EdgeInsets.only(top: height * 0.04),
-              child: (tcReady == true)?ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular((height * width) * 0.00006),
-                  ),
-                  backgroundColor: const Color(0xFFBDEFFF),
-                  foregroundColor: const Color(0xFF009ACC),
-                  disabledBackgroundColor: const Color.fromARGB(255, 183, 183, 183),
-                  disabledForegroundColor: const Color.fromARGB(255, 84, 84, 84),
-                  // disabledForegroundColor: ,
-                  // disabledBackgroundColor: Colors.transparent,
-                  side: BorderSide(
-                    color: (selectedCut != "x")?Colors.blue :Colors.grey,
-                  ),
-                  elevation: (selectedCut != "x")?5 :0,
-                ),
-                onPressed: (selectedCut != "x")
-                  ?(){
-                    print("navigator to chartpage");}
-                    // writeData(selectedCut);
-                    // Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChartsPage(device: widget.device, cut_method: selectedCut,)));}
-                  :null,
-                child: const Text("Iniciar exámen", style: TextStyle(fontWeight: FontWeight.w400),),
-              ):const LinearProgressIndicator(
-                color: Color(0xFF0071E4),
-              ),
-            )
                   ],
                 ),
+            /* ========== FIN SELECTOR MODO DE CORTE ========== */
+                Padding(
+                  padding: EdgeInsets.only(top: height * 0.04),
+                  child: (tcReady == true)
+                  ?ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular((height * width) * 0.00006),
+                      ),
+                      backgroundColor: const Color(0xFFBDEFFF),
+                      foregroundColor: const Color(0xFF009ACC),
+                      // disabledBackgroundColor: const Color.fromARGB(255, 183, 183, 183),
+                      // disabledForegroundColor: const Color.fromARGB(255, 84, 84, 84),
+                      disabledForegroundColor: Colors.transparent,
+                      disabledBackgroundColor: Colors.transparent,
+                      side: BorderSide(
+                        color: (selectedCut != "x")?Colors.blue :Colors.transparent,
+                      ),
+                      elevation: (selectedCut != "x")?5 :0,
+                    ),
+                    onPressed: (selectedCut != "x")
+                    ?(){
+                      print("navigator to chartpage");}
+                      // writeData(selectedCut);
+                      // Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChartsPage(device: widget.device, cut_method: selectedCut,)));}
+                    :null,
+                    child: const Text("Iniciar exámen", style: TextStyle(fontWeight: FontWeight.w400),),
+                  )
+                  :Wrap(
+                    direction: Axis.vertical,
+                    children: [
+                      Text(
+                        "Descubriendo característica...",
+                        style: TextStyle(color: Theme.of(context).colorScheme.tertiary),
+                      ),
+                      const LinearProgressIndicator(
+                        color: Color(0xFF0071E4),
+                      ),
+                    ]
+                  ),
+                ),
+              ],
+            ),
           ),
-        )
+        ),
       ),
     );
   }
