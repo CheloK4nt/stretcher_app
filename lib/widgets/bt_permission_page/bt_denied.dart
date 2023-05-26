@@ -51,7 +51,7 @@ class _BTDeniedScaffoldState extends State<BTDeniedScaffold> {
                       'Debe conceder permisos de "Dispositivos cercanos" para poder acceder a las funciones.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: const Color(0xFF676767),
+                        color: Theme.of(context).colorScheme.tertiary,
                         fontSize: (height * width) * 0.000045,
                         fontWeight: FontWeight.w300,
                       ),

@@ -32,7 +32,9 @@ class FindDevicesScreen extends StatelessWidget {
                             if (!connectedDevices.contains(r.device)) {
                               r.device.connect();
                             }
-                            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => StartExamPage(device: r.device)));
+                            if (context.mounted) {
+                              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => StartExamPage(device: r.device)));
+                            }
                           }
                         ),
                       )

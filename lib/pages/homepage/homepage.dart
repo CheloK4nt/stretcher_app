@@ -128,9 +128,9 @@ class _HomePageState extends State<HomePage> {
                       if (!isOn) { //if defvice is off
                         bool isturnedon = await location.requestService();
                         if (isturnedon) {
-                          print("GPS device is turned ON");
+                          /* print("GPS device is turned ON"); */
                         }else{
-                          print("GPS Device is still OFF");
+                          /* print("GPS Device is still OFF"); */
                         }
                       } else {
                         FlutterBluePlus.instance.startScan(timeout: const Duration(seconds: 4));

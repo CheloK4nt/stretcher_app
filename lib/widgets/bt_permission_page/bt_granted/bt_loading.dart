@@ -89,11 +89,11 @@ class _BtLoadingWidgetsState extends State<BtLoadingWidgets> {
               :
               RichText(
                 textAlign: TextAlign.center,
-                text: const TextSpan(
+                text: TextSpan(
                   text: 'Adaptador bluetooth se está\n',
-                  style: TextStyle(color: Color(0xFF676767), fontWeight: FontWeight.w300),
+                  style: TextStyle(color: Theme.of(context).colorScheme.tertiary, fontWeight: FontWeight.w300),
                   children: <TextSpan>[
-                    TextSpan(text: "apagando...", style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF676767)))
+                    TextSpan(text: "apagando...", style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.tertiary,))
                   ]
                 )
               ),

@@ -3,7 +3,6 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:exhalapp/main.dart';
 import 'package:exhalapp/pages/charts_page/charts_page.dart';
 import 'package:exhalapp/pages/homepage/homepage.dart';
 import 'package:exhalapp/providers/shared_pref.dart';
@@ -253,10 +252,12 @@ class _StartExamPageState extends State<StartExamPage> {
   /* ==================== WRITE DATA VOID ==================== */
   writeData(String data) async {
     // ignore: unnecessary_null_comparison
-    if(targetCharacteristic == null) return;
-
-    List<int> bytes = utf8.encode(data);
-    targetCharacteristic.write(bytes);
+    if(targetCharacteristic == null){
+      return;
+    } else {
+      List<int> bytes = utf8.encode(data);
+      await targetCharacteristic.write(bytes);
+    }
   }
   /* ==================== END WRITE DATA VOID ==================== */
 

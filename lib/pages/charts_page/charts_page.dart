@@ -11,6 +11,7 @@ import 'package:exhalapp/providers/shared_pref.dart';
 import 'package:exhalapp/providers/ui_provider.dart';
 import 'package:exhalapp/widgets/charts_page/add_note_button.dart';
 import 'package:exhalapp/widgets/charts_page/chart_selector.dart';
+import 'package:exhalapp/widgets/charts_page/values.dart';
 import 'package:exhalapp/widgets/charts_page/waiting_data_cpi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
@@ -151,7 +152,6 @@ class _ChartsPageState extends State<ChartsPage> {
               if (snapshot.connectionState == ConnectionState.active) {
                 /* RECEPCION DE DATOS  */
                 var currentValue = _dataParser(snapshot.data!);
-                print(currentValue);
 
                 if (_dataList.isEmpty){
                   _addData(0, fillList);
@@ -219,10 +219,10 @@ class _ChartsPageState extends State<ChartsPage> {
                                                   
                                   /* ========== CONDICIONAL TIPO DE UNIDAD A MOSTRAR ========== */
                                   (uiProvider == "Grafico mmHg")
-                                  ?Text('${currentValue.replaceAll(RegExp("[A-Za-z]"), "")} mmHg', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Colors.white))
+                                  ?ValueMmhg(currentValue: currentValue)
                                   : (uiProvider == "Grafico kpa")
-                                    ?Text('${((double.tryParse(currentValue.replaceAll(RegExp("[A-Za-z]"), "")) ?? 0) * 0.133322).toStringAsFixed(2)} kpa', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Colors.white))
-                                    :Text('${((double.tryParse(currentValue.replaceAll(RegExp("[A-Za-z]"), "")) ?? 0) / 7.6).toStringAsFixed(2)}%', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Colors.white)),
+                                    ?ValueKpa(currentValue: currentValue)
+                                    :ValuePercent(currentValue: currentValue),
                                   /* ========== FIN CONDICIONAL ========== */
                                                   
                                   /* ========== TERMINAR EXAMEN ========== */
@@ -437,12 +437,14 @@ class _ChartsPageState extends State<ChartsPage> {
   /* ==================== FIN AGREGAR DATOS A LINE CHART ==================== */
 
   /* ==================== WRITE DATA ==================== */
-  void writeData(String data) async {
+  writeData(String data) async {
     // ignore: unnecessary_null_comparison
-    if(targetCharacteristic == null) return;
-
-    List<int> bytes = utf8.encode(data);
-    targetCharacteristic.write(bytes);
+    if(targetCharacteristic == null){
+      return;
+    } else {
+      List<int> bytes = utf8.encode(data);
+      await targetCharacteristic.write(bytes);
+    }
   }
   /* ==================== END WRITE DATA ==================== */
 
