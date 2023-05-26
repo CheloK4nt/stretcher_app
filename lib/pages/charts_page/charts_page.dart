@@ -6,6 +6,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:exhalapp/main.dart';
+import 'package:exhalapp/pages/export_page/export_page.dart';
 import 'package:exhalapp/pages/homepage/homepage.dart';
 import 'package:exhalapp/providers/shared_pref.dart';
 import 'package:exhalapp/providers/ui_provider.dart';
@@ -635,9 +636,9 @@ class _ChartsPageState extends State<ChartsPage> {
               disconnectFromDevice();
 
               fillList = false;
-              // Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
-              //   builder: (context) => ExportPage(fullDataString: _fullDataString, fullDataList: _fullDataList, corte: corte, tiempo: tiempo, totales: totales, maximo: maximoStr, notas: notas,)
-              // ), (Route route) => false);
+              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
+                builder: (context) => ExportPage(fullDataString: _fullDataString, fullDataList: _fullDataList, corte: corte, tiempo: tiempo, totales: totales, maximo: maximoStr, notas: notas,)
+              ), (Route route) => false);
             },
             child: const Text('Terminar')
           ),

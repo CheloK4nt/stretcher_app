@@ -123,14 +123,13 @@ class _AddNoteBTNState extends State<AddNoteBTN> {
   }
 
   noteAddedSnack() {
-    final snack = SnackBar(
-      backgroundColor: Colors.blue.shade900,
-      content: const Center(
+    const snack = SnackBar(
+      content: Center(
         child: Text(
           '¡Nota agregada!'
         )
       ),
-      duration: const Duration(
+      duration: Duration(
         seconds: 2
       ),
     );

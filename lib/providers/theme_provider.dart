@@ -48,7 +48,18 @@ class ThemeProvider extends ChangeNotifier{
       iconColor: Color(0xFF0071E4),
     ),
 
+    progressIndicatorTheme: const ProgressIndicatorThemeData(
+      color: Color(0xFF0071E4),
+    ),
+
     scaffoldBackgroundColor: const Color(0xFF222439),
+
+    snackBarTheme: const SnackBarThemeData(
+      backgroundColor: Colors.white,
+      contentTextStyle: TextStyle(
+        color: Colors.black
+      )
+    ),
 
     switchTheme: SwitchThemeData(
       thumbColor: MaterialStateProperty.resolveWith((states){
@@ -118,7 +129,18 @@ class ThemeProvider extends ChangeNotifier{
       iconColor: Color(0xFF0071E4),
     ),
 
+    progressIndicatorTheme: const ProgressIndicatorThemeData(
+      color: Color(0xFF0071E4),
+    ),
+
     scaffoldBackgroundColor: Colors.white,
+
+    snackBarTheme: const SnackBarThemeData(
+      backgroundColor: Color(0xFF00C0FF),
+      contentTextStyle: TextStyle(
+        color: Colors.white
+      )
+    ),
 
     switchTheme: SwitchThemeData(
       thumbColor: MaterialStateProperty.resolveWith((states){
