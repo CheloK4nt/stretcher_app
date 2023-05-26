@@ -4,6 +4,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:exhalapp/main.dart';
+import 'package:exhalapp/pages/charts_page/charts_page.dart';
 import 'package:exhalapp/pages/homepage/homepage.dart';
 import 'package:exhalapp/providers/shared_pref.dart';
 import 'package:flutter/material.dart';
@@ -164,9 +165,8 @@ class _StartExamPageState extends State<StartExamPage> {
                     ),
                     onPressed: (selectedCut != "x")
                     ?(){
-                      print("navigator to chartpage");}
-                      // writeData(selectedCut);
-                      // Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChartsPage(device: widget.device, cut_method: selectedCut,)));}
+                      writeData(selectedCut);
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChartsPage(device: widget.device, cut_method: selectedCut,)));}
                     :null,
                     child: const Text("Iniciar exámen", style: TextStyle(fontWeight: FontWeight.w400),),
                   )

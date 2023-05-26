@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class ThemeProvider extends ChangeNotifier{
   ThemeData? _selectedTheme;
 
+/* ==================== DARK THEME ====================*/
+
   ThemeData dark = ThemeData.dark().copyWith(
     // ignore: prefer_const_constructors
     brightness: Brightness.dark,
@@ -30,6 +32,14 @@ class ThemeProvider extends ChangeNotifier{
       ),
       contentTextStyle: TextStyle(
         color: Color(0xFF676767),
+      ),
+    ),
+
+    inputDecorationTheme: const InputDecorationTheme(
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: Color(0xFF0071E4),
+        ),
       ),
     ),
 
@@ -63,6 +73,8 @@ class ThemeProvider extends ChangeNotifier{
 
   );
 
+/* ==================== LIGHT THEME ====================*/
+
   ThemeData light = ThemeData.light().copyWith(
     // ignore: prefer_const_constructors
     brightness: Brightness.light,
@@ -90,6 +102,14 @@ class ThemeProvider extends ChangeNotifier{
       ),
       contentTextStyle: TextStyle(
         color: Color(0xFF676767),
+      ),
+    ),
+
+    inputDecorationTheme: const InputDecorationTheme(
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: Color(0xFF0071E4),
+        ),
       ),
     ),
 
