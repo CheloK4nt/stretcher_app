@@ -78,7 +78,13 @@ class ThemeProvider extends ChangeNotifier{
       })
     ),
 
+    textSelectionTheme: const TextSelectionThemeData(
+      selectionHandleColor: Color(0xFF0071E4),
+      selectionColor: Color.fromARGB(255, 67, 161, 255),
+    ),
+
     colorScheme: const ColorScheme.dark(
+      secondary: Color(0xFF0071E4),
       tertiary: Color(0xFFF8F8F8),
     )
 
@@ -159,7 +165,13 @@ class ThemeProvider extends ChangeNotifier{
       })
     ),
 
+    textSelectionTheme: const TextSelectionThemeData(
+      selectionHandleColor: Color(0xFF0071E4),
+      selectionColor: Color.fromARGB(255, 67, 161, 255),
+    ),
+
     colorScheme: const ColorScheme.light(
+      secondary: Color(0xFF0071E4),
       tertiary: Color(0xFF676767),
     )
 

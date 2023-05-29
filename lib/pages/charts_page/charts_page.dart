@@ -640,7 +640,7 @@ class _ChartsPageState extends State<ChartsPage> {
                 builder: (context) => ExportPage(fullDataString: _fullDataString, fullDataList: _fullDataList, corte: corte, tiempo: tiempo, totales: totales, maximo: maximoStr, notas: notas,)
               ), (Route route) => false);
             },
-            child: const Text('Terminar')
+            child: const Text('Finalizar')
           ),
         ],
       ),

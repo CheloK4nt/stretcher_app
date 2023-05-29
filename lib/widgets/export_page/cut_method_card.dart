@@ -1,5 +1,6 @@
 import 'package:exhalapp/providers/shared_pref.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class CutMethodCard extends StatefulWidget {
   const CutMethodCard({super.key, required this.valor});
@@ -38,7 +39,18 @@ class _CutMethodCardState extends State<CutMethodCard> {
               topRight: Radius.circular(hxw * 0.000061),
               topLeft: Radius.circular(hxw * 0.000061),
             ),
-            onTap: () => {},
+            splashColor: const Color(0xFFC8E3FF),
+            highlightColor: const Color(0xFFC8E3FF),
+            onTap: () => {
+              Fluttertoast.cancel(),
+              Fluttertoast.showToast(
+                msg: (widget.valor == "C50")
+                  ?"El método de corte seleccionado fue 'C50'"
+                  :"El método de corte seleccionado fue 'MÁX'",
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.CENTER,
+              ),
+            },
             child: SizedBox(
               width: width * 0.39,
               height: height * 0.15,
@@ -52,8 +64,13 @@ class _CutMethodCardState extends State<CutMethodCard> {
                       width * 0.01,
                       0,
                     ),
-                    child: Image.asset(
-                      'assets/images/metodo_corte.png',
+                    child: (widget.valor == "C50")
+                    ?Image.asset(
+                      'assets/images/metodo_corte_c50.png',
+                      height: height * 0.05,
+                    )
+                    :Image.asset(
+                      'assets/images/metodo_corte_max.png',
                       height: height * 0.05,
                     ),
                   ),

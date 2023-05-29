@@ -7,6 +7,7 @@
 // ignore_for_file: type=lint
 
 import 'package:flutter_native_splash/flutter_native_splash_web.dart';
+import 'package:fluttertoast/fluttertoast_web.dart';
 import 'package:location_web/location_web.dart';
 import 'package:shared_preferences_web/shared_preferences_web.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
@@ -14,6 +15,7 @@ import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 void registerPlugins([final Registrar? pluginRegistrar]) {
   final Registrar registrar = pluginRegistrar ?? webPluginRegistrar;
   FlutterNativeSplashWeb.registerWith(registrar);
+  FluttertoastWebPlugin.registerWith(registrar);
   LocationWebPlugin.registerWith(registrar);
   SharedPreferencesPlugin.registerWith(registrar);
   registrar.registerMessageHandler();

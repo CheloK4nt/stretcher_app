@@ -19,6 +19,7 @@ dependencies:
   location: ^4.4.0
   bluetooth_enable_fork: ^0.1.6
   flutter_native_splash:
+  fluttertoast: ^8.2.2
 
 dev_dependencies:
   flutter_test:
@@ -45,7 +46,8 @@ flutter:
     - assets/images/datos_totales.png
     - assets/images/duracion_total.png
     - assets/images/frec_respiratoria.png
-    - assets/images/metodo_corte.png
+    - assets/images/metodo_corte_c50.png
+    - assets/images/metodo_corte_max.png
     - assets/images/notas.png
     - assets/images/valor_maximo.png
 

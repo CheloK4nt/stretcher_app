@@ -1,4 +1,5 @@
 import 'package:exhalapp/pages/homepage/homepage.dart';
+import 'package:exhalapp/providers/shared_pref.dart';
 import 'package:exhalapp/utils/storage_helper.dart';
 import 'package:exhalapp/widgets/export_page/cut_method_card.dart';
 import 'package:exhalapp/widgets/export_page/data_card.dart';
@@ -76,7 +77,7 @@ class _ExportPageState extends State<ExportPage> {
               ),
               Icon(
                 Icons.article,
-                color: Color(0xFF00C0FF),
+                color: const Color(0xFF00C0FF),
                 size: hxw * 0.0001,
               ),
             ],
@@ -188,7 +189,13 @@ class _ExportPageState extends State<ExportPage> {
                             backgroundColor: const Color(0xFF00C0FF),
                             shape: const CircleBorder()
                           ),
-                          onPressed: () => Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const HomePage()), (Route route) => false),
+                          onPressed: (){
+                            if (enableExport == true) {
+                              _backWithoutExportDialog();
+                            } else {
+                              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const HomePage()), (Route route) => false);
+                            }
+                          },
                           child: Padding(
                             padding: EdgeInsets.all(hxw * 0.00005),
                             child: Image.asset(
@@ -209,7 +216,7 @@ class _ExportPageState extends State<ExportPage> {
     );
   }
 
-/* ========================================  ======================================== */
+/* ======================================== STORAGE-PERMISSION-DIALOG ======================================== */
   Future<bool> storagePermissionDialog() {
 
     double width = MediaQuery.of(context).size.width;
@@ -256,4 +263,76 @@ class _ExportPageState extends State<ExportPage> {
       ),
     ).then((value) => false);
   }
+/* ======================================== END STORAGE-PERMISSION-DIALOG ======================================== */
+
+/* ======================================== BACK-WITOUTH-EXPORT-DIALOG ======================================== */
+  Future<bool> _backWithoutExportDialog() {
+
+    final prefs = UserPrefs();
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
+    return showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular((height * width) * 0.0001),
+          side: BorderSide(
+            color: (prefs.darkMode)
+              ?const Color(0xFF0071E4)
+              :const Color(0xFFD3D3D3)
+          )
+        ),
+        actionsAlignment: MainAxisAlignment.center,
+        backgroundColor: (prefs.darkMode)
+          ?const Color(0xFF474864)
+          :Colors.white,
+        title: Text(
+          '¿Estás seguro?',
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.tertiary,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: Text(
+          '¿Desea volver al inicio sin exportar los datos del exámen?',
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.tertiary,
+            fontWeight: FontWeight.w300,
+          ),
+        ),
+        actions: [
+          TextButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(const Color(0xFF0071E4)),
+              foregroundColor: MaterialStateProperty.all(Colors.white),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular((height*width) * 0.00007)
+                )
+              ),
+            ),
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('No')
+          ),
+          TextButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(const Color.fromARGB(255, 255, 75, 62)),
+              foregroundColor: MaterialStateProperty.all(Colors.white),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular((height*width) * 0.00007)
+                )
+              ),
+            ),
+            onPressed: () {
+              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const HomePage()), (Route route) => false);
+            },
+            child: const Text('Si')
+          ),
+        ],
+      ),
+    ).then((value) => false);
+  }
+/* ======================================== END BACK-WITOUTH-EXPORT-DIALOG ======================================== */
 }

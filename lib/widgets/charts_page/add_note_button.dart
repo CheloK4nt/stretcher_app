@@ -1,5 +1,6 @@
 import 'package:exhalapp/providers/shared_pref.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class AddNoteBTN extends StatefulWidget {
   const AddNoteBTN({super.key, required this.notas, required this.tiempo});
@@ -98,7 +99,12 @@ class _AddNoteBTNState extends State<AddNoteBTN> {
               widget.notas.add("$tiempoNota${noteController.text}");
               Navigator.of(context).pop(false);
               noteController.text = "";
-              noteAddedSnack();
+              Fluttertoast.cancel();
+              Fluttertoast.showToast(
+                msg: "¡Nota agregada!",
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.CENTER,
+              );
             },
             child: const Text("Ok")
           ),
@@ -120,19 +126,5 @@ class _AddNoteBTNState extends State<AddNoteBTN> {
         ],
       ),
     ).then((value) => false);
-  }
-
-  noteAddedSnack() {
-    const snack = SnackBar(
-      content: Center(
-        child: Text(
-          '¡Nota agregada!'
-        )
-      ),
-      duration: Duration(
-        seconds: 2
-      ),
-    );
-    return ScaffoldMessenger.of(context).showSnackBar(snack);
   }
 }

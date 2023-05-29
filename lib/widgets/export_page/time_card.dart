@@ -1,5 +1,6 @@
 import 'package:exhalapp/providers/shared_pref.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class TimeCard extends StatefulWidget {
   const TimeCard({super.key, required this.valor});
@@ -38,7 +39,16 @@ class _TimeCardState extends State<TimeCard> {
               topRight: Radius.circular(hxw * 0.000061),
               topLeft: Radius.circular(hxw * 0.000061),
             ),
-            onTap: () => {},
+            splashColor: const Color(0xFFC8E3FF),
+            highlightColor: const Color(0xFFC8E3FF),
+            onTap: () => {
+              Fluttertoast.cancel(),
+              Fluttertoast.showToast(
+                msg: "El exámen duró ${widget.valor} min.",
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.CENTER
+              ),
+            },
             child: SizedBox(
               width: width * 0.39,
               height: height * 0.15,

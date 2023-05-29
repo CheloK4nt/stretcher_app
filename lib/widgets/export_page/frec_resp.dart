@@ -1,5 +1,6 @@
 import 'package:exhalapp/providers/shared_pref.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class FrecRespCard extends StatefulWidget {
   const FrecRespCard({super.key, required this.valor});
@@ -38,7 +39,16 @@ class _FrecRespCardState extends State<FrecRespCard> {
               topRight: Radius.circular(hxw * 0.000061),
               topLeft: Radius.circular(hxw * 0.000061),
             ),
-            onTap: () => {},
+            splashColor: const Color(0xFFC8E3FF),
+            highlightColor: const Color(0xFFC8E3FF),
+            onTap: () => {
+              Fluttertoast.cancel(),
+              Fluttertoast.showToast(
+                msg: "La frecuencia respiratoria fue de ${widget.valor} por minuto.",
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.CENTER
+              ),
+            },
             child: SizedBox(
               width: width * 0.39,
               height: height * 0.15,

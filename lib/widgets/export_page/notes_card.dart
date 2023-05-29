@@ -1,5 +1,6 @@
 import 'package:exhalapp/providers/shared_pref.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class NotesCard extends StatefulWidget {
   const NotesCard({super.key, required this.valor, required this.notas});
@@ -11,10 +12,11 @@ class NotesCard extends StatefulWidget {
 }
 
 class _NotesCardState extends State<NotesCard> {
+
+  final prefs = UserPrefs();
+
   @override
   Widget build(BuildContext context) {
-
-    final prefs = UserPrefs();
 
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
@@ -39,7 +41,20 @@ class _NotesCardState extends State<NotesCard> {
               topRight: Radius.circular(hxw * 0.000061),
               topLeft: Radius.circular(hxw * 0.000061),
             ),
-            onTap: () => _showNotes(),
+            splashColor: const Color(0xFFC8E3FF),
+            highlightColor: const Color(0xFFC8E3FF),
+            onTap: (){
+              if (widget.notas.isEmpty) {
+                Fluttertoast.cancel();
+                Fluttertoast.showToast(
+                  msg: "No hay notas agregadas",
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.CENTER,
+                );
+              } else {
+                _showNotes();
+              }
+            },
             child: SizedBox(
               width: width * 0.39,
               height: height * 0.15,
@@ -103,18 +118,143 @@ class _NotesCardState extends State<NotesCard> {
   }
 
   Future _showNotes() {
+
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    double hxw = width * height;
+
+    int cont = 0;
+
+    Color light = const Color.fromARGB(255, 201, 226, 252);
+    Color l_shade = const Color.fromARGB(255, 225, 240, 255);
+    Color dark = const Color.fromARGB(255, 50, 50, 71);
+    Color d_shade = Color.fromARGB(255, 59, 59, 83);
+
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Notas'),
-        content: Text(widget.notas.toString()),
+        actionsAlignment: MainAxisAlignment.center,
+        contentPadding: const EdgeInsets.all(2),
+        insetPadding: EdgeInsets.zero,
+        scrollable: true,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(width * 0.03)
+          )
+        ),
+        backgroundColor: (prefs.darkMode)
+          ?const Color(0xFF474864)
+          :Colors.white,
+
+        /* -------------------- TITLE -------------------- */
+        title: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Notas",
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.tertiary,
+                    fontSize: hxw * 0.000065,
+                  ),
+                ),
+                Icon(
+                  Icons.note_alt_outlined,
+                  color: Color(0xFF0071E4),
+                  size: hxw * 0.0001,
+                )
+              ],
+            ),
+            const Divider(
+              color: Color(0xFF0071E4),
+              thickness: 3,
+              height: 10,
+            ),
+          ],
+        ),
+        /* -------------------- END TITLE -------------------- */
+
+        /* -------------------- CONTENT -------------------- */
+        content: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Material(
+            color: Colors.transparent,
+            shape: ContinuousRectangleBorder(
+              side: BorderSide(
+                color: (prefs.darkMode)
+                  ?dark
+                  :light,
+                width: 2,
+              )
+            ),
+            child: SizedBox(
+              height: height * 0.5,
+              width: width * 0.6,
+              child: ListView.builder(
+                itemCount: widget.notas.length,
+                itemBuilder: (context, index){
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ExpansionTile(
+                      backgroundColor: (prefs.darkMode)
+                        ?dark
+                        :light,
+                      collapsedBackgroundColor: (prefs.darkMode)
+                        ?d_shade
+                        :l_shade,
+                      collapsedShape: ContinuousRectangleBorder(
+                        side: BorderSide(
+                          color: (prefs.darkMode)
+                            ?dark
+                            :light,
+                          width: 2,
+                        )
+                      ),
+                      iconColor: const Color(0xFF0071E4),
+                      textColor: const Color(0xFF0071E4),
+                      title: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(
+                            "Nota ${index + 1}",
+                          )
+                          ,
+                          Text(
+                            widget.notas[index].toString().substring(0,5),
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w300
+                            ),
+                          )
+                        ],
+                      ),
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(widget.notas[index].toString().substring(5)),
+                        )
+                      ],
+                    ),
+                  );
+                }
+              ),
+            ),
+          ),
+        ),
+        /* -------------------- END CONTENT -------------------- */
+
+
         actions: [
-          TextButton(
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(const Color.fromARGB(255, 218, 243, 255)),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFF0071E4),
+              foregroundColor: Colors.white,
+              shape: const StadiumBorder(
+                side: BorderSide(color: Colors.transparent)
+              ),
             ),
             onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Ok')
+            child: const Text('OK')
           ),
         ],
       ),
