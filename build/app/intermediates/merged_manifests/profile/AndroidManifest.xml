@@ -74,6 +74,16 @@
             android:name="flutterEmbedding"
             android:value="2" />
 
+        <provider
+            android:name="com.crazecoder.openfile.FileProvider"
+            android:authorities="com.example.exhalapp.fileProvider.com.crazecoder.openfile"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
+
         <service
             android:name="com.lyokone.location.FlutterLocationService"
             android:enabled="true"

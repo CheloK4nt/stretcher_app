@@ -1,0 +1,14 @@
+com.crazecoder.openfile.open_file-jetified-window-java-1.0.0-beta04-0 C:\Users\desarrollador5.itisb\.gradle\caches\transforms-3\006d93cd422dbc43e89591147c2de572\transformed\jetified-window-java-1.0.0-beta04\res
+com.crazecoder.openfile.open_file-core-1.6.0-1 C:\Users\desarrollador5.itisb\.gradle\caches\transforms-3\4ca28c4a71705f8a687c69dda140a277\transformed\core-1.6.0\res
+com.crazecoder.openfile.open_file-coordinatorlayout-1.0.0-2 C:\Users\desarrollador5.itisb\.gradle\caches\transforms-3\658c795313ef4882e96b91cbdc33f336\transformed\coordinatorlayout-1.0.0\res
+com.crazecoder.openfile.open_file-jetified-annotation-experimental-1.1.0-3 C:\Users\desarrollador5.itisb\.gradle\caches\transforms-3\8965c941cf4bee4d72541b965c7c9d39\transformed\jetified-annotation-experimental-1.1.0\res
+com.crazecoder.openfile.open_file-jetified-window-1.0.0-beta04-4 C:\Users\desarrollador5.itisb\.gradle\caches\transforms-3\dee59bb480020f42d53c2ea15e4501f7\transformed\jetified-window-1.0.0-beta04\res
+com.crazecoder.openfile.open_file-media-1.0.0-5 C:\Users\desarrollador5.itisb\.gradle\caches\transforms-3\f057e7418cf3ed9a7aa575bdc69ad668\transformed\media-1.0.0\res
+com.crazecoder.openfile.open_file-main-6 C:\Users\desarrollador5.itisb\AppData\Local\Pub\Cache\hosted\pub.dev\open_file-3.3.1\android\src\main\res
+com.crazecoder.openfile.open_file-profile-7 C:\Users\desarrollador5.itisb\AppData\Local\Pub\Cache\hosted\pub.dev\open_file-3.3.1\android\src\profile\res
+com.crazecoder.openfile.open_file-pngs-8 C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\open_file\generated\res\pngs\profile
+com.crazecoder.openfile.open_file-resValues-9 C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\open_file\generated\res\resValues\profile
+com.crazecoder.openfile.open_file-rs-10 C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\open_file\generated\res\rs\profile
+com.crazecoder.openfile.open_file-mergeProfileResources-11 C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\open_file\intermediates\incremental\profile\mergeProfileResources\merged.dir
+com.crazecoder.openfile.open_file-mergeProfileResources-12 C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\open_file\intermediates\incremental\profile\mergeProfileResources\stripped.dir
+com.crazecoder.openfile.open_file-merged_res-13 C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\open_file\intermediates\merged_res\profile
