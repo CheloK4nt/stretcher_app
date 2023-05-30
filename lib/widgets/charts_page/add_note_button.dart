@@ -28,6 +28,11 @@ class _AddNoteBTNState extends State<AddNoteBTN> {
 
   @override
   Widget build(BuildContext context) {
+
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    double hxw = width * height;
+
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: const Color(0xFF00C0FF),
@@ -49,6 +54,7 @@ class _AddNoteBTNState extends State<AddNoteBTN> {
     final prefs = UserPrefs();
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    double hxw = height * width;
 
     String tiempoNota = setTiempo();
     return showDialog(
@@ -65,12 +71,28 @@ class _AddNoteBTNState extends State<AddNoteBTN> {
         backgroundColor: (prefs.darkMode)
           ?const Color(0xFF474864)
           :Colors.white,
-        icon: const Icon(Icons.note_alt_outlined),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text("Añadir Nota", style: TextStyle(color: Theme.of(context).colorScheme.tertiary),),
-            Text(tiempoNota, style: TextStyle(color: Theme.of(context).colorScheme.tertiary),),
+            Icon(
+              Icons.note_alt_outlined,
+              color: const Color(0xFF0071E4),
+              size: hxw * 0.0001,
+            ),
+            Text(
+              "Agregar Nota",
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.tertiary,
+                fontWeight: FontWeight.w300,
+                fontSize: hxw * 0.00007
+              ),
+            ),
+            Text(
+              tiempoNota,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.tertiary,
+              ),
+            ),
           ],
         ),
         content: TextField(

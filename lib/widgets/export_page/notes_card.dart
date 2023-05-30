@@ -123,12 +123,10 @@ class _NotesCardState extends State<NotesCard> {
     double height = MediaQuery.of(context).size.height;
     double hxw = width * height;
 
-    int cont = 0;
-
     Color light = const Color.fromARGB(255, 201, 226, 252);
     Color l_shade = const Color.fromARGB(255, 225, 240, 255);
     Color dark = const Color.fromARGB(255, 50, 50, 71);
-    Color d_shade = Color.fromARGB(255, 59, 59, 83);
+    Color d_shade = const Color.fromARGB(255, 59, 59, 83);
 
     return showDialog(
       context: context,
@@ -161,7 +159,7 @@ class _NotesCardState extends State<NotesCard> {
                 ),
                 Icon(
                   Icons.note_alt_outlined,
-                  color: Color(0xFF0071E4),
+                  color: const Color(0xFF0071E4),
                   size: hxw * 0.0001,
                 )
               ],

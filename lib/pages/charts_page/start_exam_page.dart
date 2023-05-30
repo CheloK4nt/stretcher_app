@@ -194,6 +194,17 @@ class _StartExamPageState extends State<StartExamPage> {
       if (!isReady) {
         disconnectFromDevice();
         _Pop();
+        const snack = SnackBar(
+          backgroundColor: Colors.amber,
+          content: Center(
+            child: Text(
+              'No se pudo establecer conexión...',
+              style: TextStyle(color: Colors.white),
+            )
+          ),
+          duration: Duration(seconds: 3),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snack);
       }
     });
 
