@@ -21,14 +21,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context){
 
+    final GlobalKey<RefreshIndicatorState> refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
+
     final screens = [const FindDevicesScreen(), const OptionsScreen()];
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     double hxw = height * width;
 
-    final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
-      GlobalKey<RefreshIndicatorState>();
-  
     return WillPopScope(
 
       onWillPop: () async{
@@ -43,7 +42,6 @@ class _HomePageState extends State<HomePage> {
           return true;
         }
       },
-
       child: StreamBuilder<BluetoothState>(
         stream: FlutterBluePlus.instance.state,
         initialData: BluetoothState.unknown,
@@ -52,126 +50,271 @@ class _HomePageState extends State<HomePage> {
           if (state == BluetoothState.off) {
             return const BTGrantedScaffold();
           } else {
-            return Scaffold(
-              body: IndexedStack(
-                index: selectedIndex,
-                children: screens,
-              ),
-              bottomNavigationBar: BottomNavigationBar(
-                selectedItemColor: Colors.white,
-                unselectedItemColor: Theme.of(context).primaryColorLight,
-                type: BottomNavigationBarType.shifting,
-                currentIndex: selectedIndex,
-                onTap: (value) {
-                  setState(() {
-                    selectedIndex = value;
-                  });
-                },
-                items: [
-
-                  /* -------------------- DEVICES BOTTOM NAVIGATION BAR ITEM -------------------- */
-                  BottomNavigationBarItem(
-                    icon: Padding(
-                      padding: EdgeInsets.all((height * width) * 0.000026),
-                      child: Icon(
-                        Icons.settings_bluetooth_outlined,
-                        size: (height * width) * 0.00008,
-                      ),
-                    ),
-                    activeIcon: Icon(
-                      Icons.bluetooth_searching,
-                      size: (height * width) * 0.0001,
-                    ),
-                    label: "Dispositivos",
-                    backgroundColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor
-                  ),
-                  /* -------------------- END DEVICES BOTTOM NAVIGATION BAR ITEM -------------------- */
-
-                  /* -------------------- OPTIONS BOTTOM NAVIGATION BAR ITEM -------------------- */
-                  BottomNavigationBarItem(
-                    icon: Padding(
-                      padding: EdgeInsets.all((height * width) * 0.000026),
-                      child: Icon(
-                        Icons.settings_outlined,
-                        size: (height * width) * 0.00008,
-                      ),
-                    ),
-                    activeIcon: Icon(
-                      Icons.settings,
-                      size: (height * width) * 0.0001,
-                    ),
-                    label: "Opciones",
-                    backgroundColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor
-                  ),
-                  /* -------------------- END OPTIONS BOTTOM NAVIGATION BAR ITEM -------------------- */
-                ]
-              ),
-
-              /* ==================== FLOATING ACTION BUTTON ==================== */
-              floatingActionButton: (selectedIndex == 0)
-              ? StreamBuilder<bool>(
-                stream: FlutterBluePlus.instance.isScanning,
-                initialData: false,
-                builder: (c, snapshot) {
-                  if (snapshot.data!) {
-                    return SizedBox(
-                      height: height * 0.05,
-                      width:  width * 0.5,
-                      child: FloatingActionButton(
-                        shape: const StadiumBorder(
-                          side: BorderSide(
-                            color: Color(0xFF00C0FF)
-                          )
+            return (selectedIndex == 0)
+/* ======================================= WITH REFRESH INDICATOR ======================================= */
+            ?RefreshIndicator(
+              backgroundColor: const Color(0xFFBDEFFF),
+              color: const Color(0xFF0071E4),
+              triggerMode: RefreshIndicatorTriggerMode.onEdge,
+              edgeOffset: height * 0.11,
+              displacement: height * 0.1,
+              key: refreshIndicatorKey,
+              onRefresh: () => FlutterBluePlus.instance.startScan(timeout: const Duration(seconds: 4)),
+              child: Scaffold(
+                body: IndexedStack(
+                  index: selectedIndex,
+                  children: screens,
+                ),
+                bottomNavigationBar: BottomNavigationBar(
+                  selectedItemColor: Colors.white,
+                  unselectedItemColor: Theme.of(context).primaryColorLight,
+                  type: BottomNavigationBarType.shifting,
+                  currentIndex: selectedIndex,
+                  onTap: (value) {
+                    setState(() {
+                      selectedIndex = value;
+                      print(selectedIndex);
+                    });
+                  },
+                  items: [
+            
+                    /* -------------------- DEVICES BOTTOM NAVIGATION BAR ITEM -------------------- */
+                    BottomNavigationBarItem(
+                      icon: Padding(
+                        padding: EdgeInsets.all((height * width) * 0.000026),
+                        child: Icon(
+                          Icons.settings_bluetooth_outlined,
+                          size: (height * width) * 0.00008,
                         ),
-                        isExtended: true,
-                        onPressed: () {
-                          FlutterBluePlus.instance.stopScan();
-                        },
-                        backgroundColor: const Color(0xFFBDEFFF),
-                        foregroundColor: Colors.black,
-                        child: Text(
-                          "Detener búsqueda",
-                          style: TextStyle(
-                            fontSize: hxw * 0.000045,
-                            fontWeight: FontWeight.w400,
+                      ),
+                      activeIcon: Icon(
+                        Icons.bluetooth_searching,
+                        size: (height * width) * 0.0001,
+                      ),
+                      label: "Dispositivos",
+                      backgroundColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor
+                    ),
+                    /* -------------------- END DEVICES BOTTOM NAVIGATION BAR ITEM -------------------- */
+            
+                    /* -------------------- OPTIONS BOTTOM NAVIGATION BAR ITEM -------------------- */
+                    BottomNavigationBarItem(
+                      icon: Padding(
+                        padding: EdgeInsets.all((height * width) * 0.000026),
+                        child: Icon(
+                          Icons.settings_outlined,
+                          size: (height * width) * 0.00008,
+                        ),
+                      ),
+                      activeIcon: Icon(
+                        Icons.settings,
+                        size: (height * width) * 0.0001,
+                      ),
+                      label: "Opciones",
+                      backgroundColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor
+                    ),
+                    /* -------------------- END OPTIONS BOTTOM NAVIGATION BAR ITEM -------------------- */
+                  ]
+                ),
+            
+                /* ==================== FLOATING ACTION BUTTON ==================== */
+                floatingActionButton: (selectedIndex == 0)
+                ? StreamBuilder<bool>(
+                  stream: FlutterBluePlus.instance.isScanning,
+                  initialData: false,
+                  builder: (c, snapshot) {
+                    if (snapshot.data!) {
+                      return SizedBox(
+                        height: height * 0.05,
+                        width:  width * 0.5,
+                        child: FloatingActionButton(
+                          shape: const StadiumBorder(
+                            side: BorderSide(
+                              color: Color(0xFF00C0FF)
+                            )
+                          ),
+                          isExtended: true,
+                          onPressed: () {
+                            FlutterBluePlus.instance.stopScan();
+                          },
+                          backgroundColor: const Color(0xFFBDEFFF),
+                          foregroundColor: Colors.black,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                "Detener búsqueda",
+                                style: TextStyle(
+                                  fontSize: hxw * 0.000045,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                              SizedBox(
+                                width:  width * 0.4,
+                                child: const LinearProgressIndicator(
+                                  backgroundColor: Colors.white,
+                                  minHeight: 2,
+                                ),
+                              )
+                            ],
                           ),
                         ),
-                      ),
-                    );
-                  } else {
-                    return FloatingActionButton( /* VER LOCALIZACION DEL FAB */
-                      backgroundColor: const Color(0xFF00C0FF),
-                        child: const Icon(Icons.search, color: Colors.white,),
-                        onPressed: () async {
-                          if (await Permission.location.isGranted) {
-                            Location location = Location();
-                            bool isOn = await location.serviceEnabled(); 
-                            if (!isOn) { //if defvice is off
-                              bool isturnedon = await location.requestService();
-                              if (isturnedon) {
-                                /* print("GPS device is turned ON"); */
-                              }else{
-                                /* print("GPS Device is still OFF"); */
+                      );
+                    } else {
+                      return FloatingActionButton( /* VER LOCALIZACION DEL FAB */
+                        backgroundColor: const Color(0xFF00C0FF),
+                          child: const Icon(Icons.search, color: Colors.white,),
+                          onPressed: () async {
+                            if (await Permission.location.isGranted) {
+                              Location location = Location();
+                              bool isOn = await location.serviceEnabled(); 
+                              if (!isOn) { //if defvice is off
+                                bool isturnedon = await location.requestService();
+                                if (isturnedon) {
+                                  /* print("GPS device is turned ON"); */
+                                }else{
+                                  /* print("GPS Device is still OFF"); */
+                                }
+                              } else {
+                                refreshIndicatorKey.currentState?.show();
                               }
                             } else {
-                              FlutterBluePlus.instance.startScan(timeout: const Duration(seconds: 4));
+                              locationPermissionDialog();
                             }
-                          } else {
-                            locationPermissionDialog();
                           }
-                        }
-                    );
+                      );
+                    }
                   }
-                }
-              )
-              : null
-              /* ==================== END FLOATING ACTION BUTTON ==================== */
-            );
+                )
+                : null
+                /* ==================== END FLOATING ACTION BUTTON ==================== */
+              ),
+            )
+/* ======================================= END WITH REFRESH INDICATOR ======================================= */
+
+/* ======================================= WITHOUT REFRESH INDICATOR ======================================= */
+            :Scaffold(
+                body: IndexedStack(
+                  index: selectedIndex,
+                  children: screens,
+                ),
+                bottomNavigationBar: BottomNavigationBar(
+                  selectedItemColor: Colors.white,
+                  unselectedItemColor: Theme.of(context).primaryColorLight,
+                  type: BottomNavigationBarType.shifting,
+                  currentIndex: selectedIndex,
+                  onTap: (value) {
+                    setState(() {
+                      selectedIndex = value;
+                      print(selectedIndex);
+                    });
+                  },
+                  items: [
+            
+                    /* -------------------- DEVICES BOTTOM NAVIGATION BAR ITEM -------------------- */
+                    BottomNavigationBarItem(
+                      icon: Padding(
+                        padding: EdgeInsets.all((height * width) * 0.000026),
+                        child: Icon(
+                          Icons.settings_bluetooth_outlined,
+                          size: (height * width) * 0.00008,
+                        ),
+                      ),
+                      activeIcon: Icon(
+                        Icons.bluetooth_searching,
+                        size: (height * width) * 0.0001,
+                      ),
+                      label: "Dispositivos",
+                      backgroundColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor
+                    ),
+                    /* -------------------- END DEVICES BOTTOM NAVIGATION BAR ITEM -------------------- */
+            
+                    /* -------------------- OPTIONS BOTTOM NAVIGATION BAR ITEM -------------------- */
+                    BottomNavigationBarItem(
+                      icon: Padding(
+                        padding: EdgeInsets.all((height * width) * 0.000026),
+                        child: Icon(
+                          Icons.settings_outlined,
+                          size: (height * width) * 0.00008,
+                        ),
+                      ),
+                      activeIcon: Icon(
+                        Icons.settings,
+                        size: (height * width) * 0.0001,
+                      ),
+                      label: "Opciones",
+                      backgroundColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor
+                    ),
+                    /* -------------------- END OPTIONS BOTTOM NAVIGATION BAR ITEM -------------------- */
+                  ]
+                ),
+            
+                /* ==================== FLOATING ACTION BUTTON ==================== */
+                floatingActionButton: (selectedIndex == 0)
+                ? StreamBuilder<bool>(
+                  stream: FlutterBluePlus.instance.isScanning,
+                  initialData: false,
+                  builder: (c, snapshot) {
+                    if (snapshot.data!) {
+                      return SizedBox(
+                        height: height * 0.05,
+                        width:  width * 0.5,
+                        child: FloatingActionButton(
+                          shape: const StadiumBorder(
+                            side: BorderSide(
+                              color: Color(0xFF00C0FF)
+                            )
+                          ),
+                          isExtended: true,
+                          onPressed: () {
+                            FlutterBluePlus.instance.stopScan();
+                          },
+                          backgroundColor: const Color(0xFFBDEFFF),
+                          foregroundColor: Colors.black,
+                          child: Text(
+                            "Detener búsqueda",
+                            style: TextStyle(
+                              fontSize: hxw * 0.000045,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ),
+                      );
+                    } else {
+                      return FloatingActionButton( /* VER LOCALIZACION DEL FAB */
+                        backgroundColor: const Color(0xFF00C0FF),
+                          child: const Icon(Icons.search, color: Colors.white,),
+                          onPressed: () async {
+                            if (await Permission.location.isGranted) {
+                              Location location = Location();
+                              bool isOn = await location.serviceEnabled(); 
+                              if (!isOn) { //if defvice is off
+                                bool isturnedon = await location.requestService();
+                                if (isturnedon) {
+                                  /* print("GPS device is turned ON"); */
+                                }else{
+                                  /* print("GPS Device is still OFF"); */
+                                }
+                              } else {
+                                refreshIndicatorKey.currentState?.show();
+                              }
+                            } else {
+                              locationPermissionDialog();
+                            }
+                          }
+                      );
+                    }
+                  }
+                )
+                : null
+                /* ==================== END FLOATING ACTION BUTTON ==================== */
+              );
+/* ======================================= END WITHOUT REFRESH INDICATOR ======================================= */
           }
         }
       )
     );
   }
+
   /* ==================== LOCATION PERMISSION DIALOG ==================== */
   Future<bool> locationPermissionDialog() {
     return showDialog(
@@ -219,5 +362,13 @@ class _HomePageState extends State<HomePage> {
     ).then((value) => false);
   }
   /* ==================== END LOCATION PERMISSION DIALOG ==================== */
+
+  /* ==================== REFRESH ==================== */
+  refresh(){
+    if (selectedIndex == 0) {
+      
+    }
+  }
+  /* ==================== END REFRESH ==================== */
 }
   
