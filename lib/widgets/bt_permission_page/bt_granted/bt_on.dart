@@ -106,7 +106,9 @@ class _BtOnWidgetsState extends State<BtOnWidgets> {
                     backgroundColor: const Color(0xFF00C0FF),
                     shape: const CircleBorder()
                   ),
-                  onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const HomePage())),
+                  onPressed: (){
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const HomePage()));
+                  },
                   child: Padding(
                     padding: EdgeInsets.all(height * width) * 0.000026,
                     child: Icon(

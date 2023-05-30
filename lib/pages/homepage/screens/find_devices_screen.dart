@@ -9,6 +9,10 @@ class FindDevicesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    FlutterBluePlus.instance
+            .startScan(timeout: const Duration(seconds: 4));
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Lista de dispositivos"),

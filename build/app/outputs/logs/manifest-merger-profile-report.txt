@@ -32,6 +32,7 @@ MERGED from C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\ex
 MERGED from [:shared_preferences_android] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\shared_preferences_android\intermediates\merged_manifest\profile\AndroidManifest.xml:2:1-9:12
 MERGED from [:permission_handler_android] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\permission_handler_android\intermediates\merged_manifest\profile\AndroidManifest.xml:2:1-9:12
 MERGED from [:flutter_blue_plus] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\flutter_blue_plus\intermediates\merged_manifest\profile\AndroidManifest.xml:2:1-25:12
+MERGED from [:fluttertoast] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\fluttertoast\intermediates\merged_manifest\profile\AndroidManifest.xml:2:1-9:12
 MERGED from [:path_provider_android] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\path_provider_android\intermediates\merged_manifest\profile\AndroidManifest.xml:2:1-9:12
 MERGED from [:location] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\location\intermediates\merged_manifest\profile\AndroidManifest.xml:2:1-20:12
 MERGED from [:flutter_native_splash] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\flutter_native_splash\intermediates\merged_manifest\profile\AndroidManifest.xml:2:1-9:12
@@ -171,6 +172,8 @@ MERGED from [:permission_handler_android] C:\Users\desarrollador5.itisb\Document
 MERGED from [:permission_handler_android] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\permission_handler_android\intermediates\merged_manifest\profile\AndroidManifest.xml:5:5-7:41
 MERGED from [:flutter_blue_plus] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\flutter_blue_plus\intermediates\merged_manifest\profile\AndroidManifest.xml:5:5-7:41
 MERGED from [:flutter_blue_plus] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\flutter_blue_plus\intermediates\merged_manifest\profile\AndroidManifest.xml:5:5-7:41
+MERGED from [:fluttertoast] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\fluttertoast\intermediates\merged_manifest\profile\AndroidManifest.xml:5:5-7:41
+MERGED from [:fluttertoast] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\fluttertoast\intermediates\merged_manifest\profile\AndroidManifest.xml:5:5-7:41
 MERGED from [:path_provider_android] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\path_provider_android\intermediates\merged_manifest\profile\AndroidManifest.xml:5:5-7:41
 MERGED from [:path_provider_android] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\path_provider_android\intermediates\merged_manifest\profile\AndroidManifest.xml:5:5-7:41
 MERGED from [:location] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\location\intermediates\merged_manifest\profile\AndroidManifest.xml:5:5-7:41

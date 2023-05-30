@@ -19,7 +19,8 @@ com.example.exhalapp-merged_res-17 C:\Users\desarrollador5.itisb\Documents\proye
 com.example.exhalapp-packaged_res-18 C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\bluetooth_enable_fork\intermediates\packaged_res\profile
 com.example.exhalapp-packaged_res-19 C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\flutter_blue_plus\intermediates\packaged_res\profile
 com.example.exhalapp-packaged_res-20 C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\flutter_native_splash\intermediates\packaged_res\profile
-com.example.exhalapp-packaged_res-21 C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\location\intermediates\packaged_res\profile
-com.example.exhalapp-packaged_res-22 C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\path_provider_android\intermediates\packaged_res\profile
-com.example.exhalapp-packaged_res-23 C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\permission_handler_android\intermediates\packaged_res\profile
-com.example.exhalapp-packaged_res-24 C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\shared_preferences_android\intermediates\packaged_res\profile
+com.example.exhalapp-packaged_res-21 C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\fluttertoast\intermediates\packaged_res\profile
+com.example.exhalapp-packaged_res-22 C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\location\intermediates\packaged_res\profile
+com.example.exhalapp-packaged_res-23 C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\path_provider_android\intermediates\packaged_res\profile
+com.example.exhalapp-packaged_res-24 C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\permission_handler_android\intermediates\packaged_res\profile
+com.example.exhalapp-packaged_res-25 C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\shared_preferences_android\intermediates\packaged_res\profile

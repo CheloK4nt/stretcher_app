@@ -24,6 +24,7 @@ class _HomePageState extends State<HomePage> {
     final screens = [const FindDevicesScreen(), const OptionsScreen()];
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    double hxw = height * width;
   
     return StreamBuilder<BluetoothState>(
       stream: FlutterBluePlus.instance.state,
@@ -112,13 +113,32 @@ class _HomePageState extends State<HomePage> {
           initialData: false,
           builder: (c, snapshot) {
             if (snapshot.data!) {
-              return FloatingActionButton(
-                onPressed: () => FlutterBluePlus.instance.stopScan(),
-                backgroundColor: Colors.red,
-                child: const Icon(Icons.stop),
+              return SizedBox(
+                height: height * 0.05,
+                width:  width * 0.5,
+                child: FloatingActionButton(
+                  shape: const StadiumBorder(
+                    side: BorderSide(
+                      color: Color(0xFF00C0FF)
+                    )
+                  ),
+                  isExtended: true,
+                  onPressed: () {
+                    FlutterBluePlus.instance.stopScan();
+                  },
+                  backgroundColor: const Color(0xFFBDEFFF),
+                  foregroundColor: Colors.black,
+                  child: Text(
+                    "Detener búsqueda",
+                    style: TextStyle(
+                      fontSize: hxw * 0.000045,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ),
               );
             } else {
-              return FloatingActionButton(
+              return FloatingActionButton( /* VER LOCALIZACION DEL FAB */
                 backgroundColor: const Color(0xFF00C0FF),
                   child: const Icon(Icons.search, color: Colors.white,),
                   onPressed: () async {
