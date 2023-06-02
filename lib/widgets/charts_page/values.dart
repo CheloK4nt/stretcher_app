@@ -18,7 +18,7 @@ class _ValueMmhgState extends State<ValueMmhg> {
     double hxw = height * width;
 
     return Text(
-      '${widget.currentValue.replaceAll(RegExp("[A-Za-z]"), "")} mmHg',
+      '${double.parse(widget.currentValue.replaceAll(RegExp("[A-Za-z]"), "")).toStringAsFixed(0)} mmHg',
       style: TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: hxw * 0.00008,
@@ -47,7 +47,7 @@ class _ValueKpaState extends State<ValueKpa> {
     double hxw = height * width;
 
     return Text(
-      '${((double.tryParse(widget.currentValue.replaceAll(RegExp("[A-Za-z]"), "")) ?? 0) * 0.133322).toStringAsFixed(2)} kpa',
+      '${((double.tryParse(widget.currentValue.replaceAll(RegExp("[A-Za-z]"), "")) ?? 0) * 0.133322).toStringAsFixed(0)} kpa',
       style: TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: hxw * 0.00008,
@@ -77,7 +77,7 @@ class _ValuePercentState extends State<ValuePercent> {
     double hxw = height * width;
 
     return Text(
-      '${((double.tryParse(widget.currentValue.replaceAll(RegExp("[A-Za-z]"), "")) ?? 0) / 7.6).toStringAsFixed(2)}%',
+      '${((double.tryParse(widget.currentValue.replaceAll(RegExp("[A-Za-z]"), "")) ?? 0) / 7.6).toStringAsFixed(0)}%',
       style: TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: hxw * 0.00008,

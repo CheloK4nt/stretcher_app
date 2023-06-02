@@ -334,6 +334,7 @@ class _StartExamPageState extends State<StartExamPage> {
             ),
             onPressed: () {
               disconnectFromDevice();
+              writeData("0");
               Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const HomePage()), (Route route) => false);
             },
             child: const Text('Si')
