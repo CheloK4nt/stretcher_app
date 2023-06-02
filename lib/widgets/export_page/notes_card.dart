@@ -124,9 +124,9 @@ class _NotesCardState extends State<NotesCard> {
     double hxw = width * height;
 
     Color light = const Color.fromARGB(255, 201, 226, 252);
-    Color l_shade = const Color.fromARGB(255, 225, 240, 255);
+    Color lshade = const Color.fromARGB(255, 225, 240, 255);
     Color dark = const Color.fromARGB(255, 50, 50, 71);
-    Color d_shade = const Color.fromARGB(255, 59, 59, 83);
+    Color dshade = const Color.fromARGB(255, 59, 59, 83);
 
     return showDialog(
       context: context,
@@ -199,8 +199,8 @@ class _NotesCardState extends State<NotesCard> {
                         ?dark
                         :light,
                       collapsedBackgroundColor: (prefs.darkMode)
-                        ?d_shade
-                        :l_shade,
+                        ?dshade
+                        :lshade,
                       collapsedShape: ContinuousRectangleBorder(
                         side: BorderSide(
                           color: (prefs.darkMode)

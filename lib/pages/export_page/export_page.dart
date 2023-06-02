@@ -220,8 +220,6 @@ class _ExportPageState extends State<ExportPage> {
   Future<bool> storagePermissionDialog() {
 
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-    double hxw = width * height;
 
     return showDialog(
       context: context,

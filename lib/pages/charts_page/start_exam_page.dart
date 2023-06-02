@@ -190,7 +190,7 @@ class _StartExamPageState extends State<StartExamPage> {
       return;
     }
 
-    Timer(const Duration(seconds: 15), () {
+    Timer(const Duration(seconds: 8), () {
       if (!isReady) {
         disconnectFromDevice();
         _Pop();
@@ -262,13 +262,33 @@ class _StartExamPageState extends State<StartExamPage> {
 
   /* ==================== WRITE DATA VOID ==================== */
   writeData(String data) async {
-    // ignore: unnecessary_null_comparison
-    if(targetCharacteristic == null){
-      return;
-    } else {
+    List<BluetoothDevice> connectedDevices = await FlutterBluePlus.instance.connectedDevices;
+
+    if (data == "0") {
       List<int> bytes = utf8.encode(data);
       await targetCharacteristic.write(bytes);
+    } else {
+      if (connectedDevices.contains(widget.device)) {
+        List<int> bytes = utf8.encode(data);
+        await targetCharacteristic.write(bytes);
+      } else {
+        // ignore: use_build_context_synchronously
+        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const HomePage()), (Route route) => false);
+        const snack = SnackBar(
+            backgroundColor: Colors.amber,
+            content: Center(
+              child: Text(
+                'No se pudo establecer conexión...',
+                style: TextStyle(color: Colors.white),
+              )
+            ),
+            duration: Duration(seconds: 3),
+          );
+        // ignore: use_build_context_synchronously
+        ScaffoldMessenger.of(context).showSnackBar(snack);
     }
+    }
+
   }
   /* ==================== END WRITE DATA VOID ==================== */
 
@@ -333,8 +353,8 @@ class _StartExamPageState extends State<StartExamPage> {
               ),
             ),
             onPressed: () {
-              disconnectFromDevice();
               writeData("0");
+              disconnectFromDevice();
               Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const HomePage()), (Route route) => false);
             },
             child: const Text('Si')

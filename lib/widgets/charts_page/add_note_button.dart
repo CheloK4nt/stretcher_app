@@ -30,21 +30,24 @@ class _AddNoteBTNState extends State<AddNoteBTN> {
   Widget build(BuildContext context) {
 
     double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
-    double hxw = width * height;
 
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: const Color(0xFF00C0FF),
-        shape: const StadiumBorder(),
+    return Padding(
+      padding: EdgeInsets.only(
+        top: height * 0.015,
       ),
-      onPressed: () => addNoteDialog(),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: const [
-          Icon(Icons.add, color: Colors.white,),
-          Text("Agregar Nota", style: TextStyle(color: Colors.white),),
-        ],
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xFF00C0FF),
+          shape: const StadiumBorder(),
+        ),
+        onPressed: () => addNoteDialog(),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: const [
+            Icon(Icons.add, color: Colors.white,),
+            Text("Agregar Nota", style: TextStyle(color: Colors.white),),
+          ],
+        ),
       ),
     );
   }

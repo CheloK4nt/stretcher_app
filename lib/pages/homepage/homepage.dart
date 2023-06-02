@@ -74,7 +74,6 @@ class _HomePageState extends State<HomePage> {
                   onTap: (value) {
                     setState(() {
                       selectedIndex = value;
-                      print(selectedIndex);
                     });
                   },
                   items: [
@@ -206,7 +205,6 @@ class _HomePageState extends State<HomePage> {
                   onTap: (value) {
                     setState(() {
                       selectedIndex = value;
-                      print(selectedIndex);
                     });
                   },
                   items: [

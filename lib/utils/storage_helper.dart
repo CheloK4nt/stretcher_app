@@ -12,11 +12,10 @@ class StorageHelper {
     final directory = "$documentsPath/ExhalApp";
     final folder = Directory(directory);
     if (await folder.exists()) {
-      print("folder existe");
+      // print("folder existe");
     } else {
       folder.create();
     }
-    print(directory);
     return directory;
   }
 
@@ -41,13 +40,11 @@ class StorageHelper {
 
   static Future<File> writeTextToFile(String data) async {
     final file = await _localFile;
-    print("Escribiendo");
     return file.writeAsString(data);
   }
 
   static Future<File> writeNotesToFile(String data) async {
     final file = await _localNotesFile;
-    print("Escribiendo");
     return file.writeAsString(data);
   }
 

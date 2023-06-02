@@ -1,9 +1,12 @@
 // ignore_for_file: non_constant_identifier_names, prefer_final_fields, unused_import, no_leading_underscores_for_local_identifiers
 
+import 'package:flutter/material.dart';
+
 import 'dart:async';
 import 'dart:convert' show utf8;
 import 'dart:io';
 import 'dart:math';
+import 'dart:developer' as logdev;
 
 import 'package:exhalapp/main.dart';
 import 'package:exhalapp/pages/export_page/export_page.dart';
@@ -11,14 +14,11 @@ import 'package:exhalapp/pages/homepage/homepage.dart';
 import 'package:exhalapp/providers/shared_pref.dart';
 import 'package:exhalapp/providers/ui_provider.dart';
 import 'package:exhalapp/widgets/charts_page/add_note_button.dart';
+import 'package:exhalapp/widgets/charts_page/line_chart.dart';
 import 'package:exhalapp/widgets/charts_page/chart_selector.dart';
 import 'package:exhalapp/widgets/charts_page/values.dart';
 import 'package:exhalapp/widgets/charts_page/waiting_data_cpi.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
-
-import 'dart:developer' as logdev;
-
 import 'package:community_charts_flutter/community_charts_flutter.dart' as charts;
 import 'package:provider/provider.dart';
 import 'package:path_provider/path_provider.dart';
@@ -49,6 +49,9 @@ class _ChartsPageState extends State<ChartsPage> {
   bool isReady = false;
   bool fillList = true;
   bool isCutPoint = false;
+  bool verify = true;
+  bool reconnectedSnack = false;
+  bool normalWidgets = true;
   Stream<List<int>>? stream;
   late BluetoothCharacteristic targetCharacteristic;
 
@@ -84,6 +87,8 @@ class _ChartsPageState extends State<ChartsPage> {
   String totales = "";
   String maximoStr = "";
   String corte = "";
+  String isConnected = "desconectado";
+  String metodo = '';
   double maximo = 0;
 
   List notas = List.empty(growable: true);
@@ -114,6 +119,12 @@ class _ChartsPageState extends State<ChartsPage> {
     double width = MediaQuery.of(context).size.width;
     double hxw = height * width;
 
+    if (widget.cut_method == "1") {
+      metodo = "MÁX.";
+    } else {
+      metodo = "C50";
+    }
+
     final uiProvider = context.watch<UIProvider>().selectedUnity;
 
     var seriesList = [
@@ -141,17 +152,44 @@ class _ChartsPageState extends State<ChartsPage> {
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: Text(widget.device.name),
+          actions: [
+            Padding(
+              padding: EdgeInsets.only(right: width * 0.1, top: height * 0.01, bottom: height * 0.01),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(hxw * 0.00002),
+                  color: (prefs.darkMode)
+                    ?const Color(0xFF2b2b47)
+                    :const Color(0xFF0050a1)
+                ),
+                child: Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(hxw * 0.00002),
+                    child: Text(
+                      metodo,
+                      style: TextStyle(
+                        fontSize: hxw * 0.00008,
+                        fontWeight: FontWeight.w200
+                      ),
+                    ),
+                  ),
+                ),
+              )
+            ),
+          ],
         ),
         body: StreamBuilder<List<int>>(
             stream: stream,
-            builder: (BuildContext context,
-                AsyncSnapshot<List<int>> snapshot) {
+            builder: (BuildContext context, AsyncSnapshot<List<int>> snapshot) {
               if (snapshot.hasError) {
                 return Text('Error: ${snapshot.error}');
               }
 
-              if (snapshot.connectionState == ConnectionState.active) {
-                /* RECEPCION DE DATOS  */
+              if (verify == true) {
+                verifyConnection();
+              }
+
+              if (snapshot.connectionState == ConnectionState.active) { /* RECEPCION DE DATOS  */
                 var currentValue = _dataParser(snapshot.data!);
 
                 if (_dataList.isEmpty){
@@ -168,25 +206,12 @@ class _ChartsPageState extends State<ChartsPage> {
                     _addData(double.tryParse(currentValue) ?? 0, fillList);
                   });
                 });
-                
-                return Center(
+                return (normalWidgets)
+                ?Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Text("Unidades de medida:",
-                            style: TextStyle(
-                              fontSize: hxw * 0.00007,
-                              fontWeight: FontWeight.w400,
-                              color: Theme.of(context).colorScheme.tertiary,
-                            ),
-                          ),
-                        ),
-                      ),
-
+                      const MeasureUnits(),
                       const ChartSelector(),
 
                       /* ==================== VALOR ACTUAL ==================== */
@@ -252,102 +277,17 @@ class _ChartsPageState extends State<ChartsPage> {
                       ),
                       /* ==================== FIN VALOR ACTUAL ==================== */
 
-                      Padding(
-                        padding: EdgeInsets.only(
-                          top: height * 0.015,
-                        ),
-                        child: AddNoteBTN(notas: notas, tiempo: "$min:$seg",),
-                      ),
+                      /* ==================== ADD NOTE BUTTON ==================== */
+                      AddNoteBTN(notas: notas, tiempo: "$min:$seg",),
+                      /* ==================== END ADD-NOTE-BUTTON ==================== */
 
-                      /* ==================== GRAFICO ==================== */
-                      Expanded(
-                        flex: 1,
-                        child: Padding(
-                          padding: EdgeInsets.all(hxw * 0.00003),
-                          child: charts.LineChart(
-                            seriesList,
-                            animate: false,
-                            defaultRenderer: charts.LineRendererConfig(
-                              includePoints: false,
-                              includeArea: true,
-                              areaOpacity: 0.35
-                            ),
-                            primaryMeasureAxis: charts.NumericAxisSpec(
-                              renderSpec: charts.GridlineRendererSpec(
-                                labelStyle: charts.TextStyleSpec(
-                                  color: (prefs.darkMode)
-                                    ?charts.MaterialPalette.white
-                                    :charts.MaterialPalette.black,
-                                )
-                              ),
-                              tickProviderSpec: (uiProvider == "Grafico mmHg") 
-                              ?const charts.StaticNumericTickProviderSpec(
-                                [
-                                  charts.TickSpec(0, label: "0"),
-                                  charts.TickSpec(5, label: "5"),
-                                  charts.TickSpec(10, label: "10"),
-                                  charts.TickSpec(15, label: "15"),
-                                  charts.TickSpec(20, label: "20"),
-                                  charts.TickSpec(25, label: "25"),
-                                  charts.TickSpec(30, label: "30"),
-                                  charts.TickSpec(35, label: "35"),
-                                  charts.TickSpec(40, label: "40"),
-                                  charts.TickSpec(45, label: "45"),
-                                  charts.TickSpec(50, label: "50"),
-                                ]
-                              )
-                              :const charts.StaticNumericTickProviderSpec(
-                                [
-                                  charts.TickSpec(0, label: "0"),
-                                  charts.TickSpec(2, label: "2"),
-                                  charts.TickSpec(4, label: "4"),
-                                  charts.TickSpec(6, label: "6"),
-                                  charts.TickSpec(8, label: "8"),
-                                  charts.TickSpec(10, label: "10"),
-                                ]
-                              )
-                            ),
-                            domainAxis: charts.NumericAxisSpec(
-                              /* ========== MENOS DE 1 MINUTO ========== */
-                              renderSpec: charts.GridlineRendererSpec(
-                                labelStyle: charts.TextStyleSpec(
-                                  color: (prefs.darkMode)
-                                    ?charts.MaterialPalette.white
-                                    :charts.MaterialPalette.black,
-                                )
-                              ),
-                              tickProviderSpec: (_minutosTranscurridos < 1)    
-                              ? charts.StaticNumericTickProviderSpec(
-                                [
-                                  charts.TickSpec(_dataList.last.xValue, label: (_segundosTranscurridos < 10)
-                                    ? "⏱ 00:0$_segundosTranscurridos"
-                                    : "⏱ 00:$_segundosTranscurridos"
-                                  ),
-                                ]
-                              )
-                              /* ================================================== */
-                              /* ========== MAS o IGUAL a 1 MINUTO ========== */
-                              : charts.StaticNumericTickProviderSpec(
-                                [
-                                  charts.TickSpec(_dataList.last.xValue, label: (_minutosTranscurridos < 10)
-                                  ?(_segundosTranscurridos < 10)
-                                    ? "⏱ 0$_minutosTranscurridos:0$_segundosTranscurridos"
-                                    : "⏱ 0$_minutosTranscurridos:$_segundosTranscurridos"
-                                  :(_segundosTranscurridos < 10)
-                                    ? "⏱ $_minutosTranscurridos:0$_segundosTranscurridos"
-                                    : "⏱ $_minutosTranscurridos:$_segundosTranscurridos"
-                                  ),
-                                ]
-                              )
-                              /* ================================================== */
-                            ),
-                          ),
-                        ),
-                      )
-                      /* ==================== FIN GRAFICO ==================== */
+                      /* ==================== LINE CHART ==================== */
+                      LineChartExportPage(seriesList: seriesList, segundosTranscurridos: _segundosTranscurridos, minutosTranscurridos: _minutosTranscurridos, dataList: _dataList,)
+                      /* ==================== END LINE CHART ==================== */
                     ],
                   )
-                );
+                )
+                :const WaitingDataCPI();
               } else {
                 return const WaitingDataCPI();
               }
@@ -449,14 +389,15 @@ class _ChartsPageState extends State<ChartsPage> {
   }
   /* ==================== END WRITE DATA ==================== */
 
-  /* ==================== DISCOVER SERVICES ==================== */
-  discoverServices() async {
+    /* ==================== WRITE DATA RECONNECT ==================== */
+  writeDataReconnect(String data) async {
+
+    isReady = false;
     // ignore: unnecessary_null_comparison
     if (widget.device == null) {
       _Pop();
       return;
     }
-
     List<BluetoothService> services = await widget.device.discoverServices();
     for (var service in services) {
       if (service.uuid.toString() == SERVICE_UUID) {
@@ -464,19 +405,55 @@ class _ChartsPageState extends State<ChartsPage> {
           if (characteristic.uuid.toString() == CHARACTERISTIC_UUID) {
             characteristic.setNotifyValue(!characteristic.isNotifying);
             stream = characteristic.value;
-
             setState(() {
               isReady = true;
             });
           }
-
           if (characteristic.uuid.toString() == TARGET_CHARACTERISTIC) {
             targetCharacteristic = characteristic;
           }
         }
       }
     }
+    isConnected = "conectado";
+    if (!isReady) {
+      _Pop();
+    }
 
+    // ignore: unnecessary_null_comparison
+    if(isReady == true){
+      List<int> bytes = utf8.encode(data);
+      await targetCharacteristic.write(bytes);
+    }
+  }
+  /* ==================== END WRITE DATA RECONNECT ==================== */
+
+  /* ==================== DISCOVER SERVICES ==================== */
+  discoverServices() async {
+    isReady = false;
+    // ignore: unnecessary_null_comparison
+    if (widget.device == null) {
+      _Pop();
+      return;
+    }
+    List<BluetoothService> services = await widget.device.discoverServices();
+    for (var service in services) {
+      if (service.uuid.toString() == SERVICE_UUID) {
+        for (var characteristic in service.characteristics) {
+          if (characteristic.uuid.toString() == CHARACTERISTIC_UUID) {
+            characteristic.setNotifyValue(!characteristic.isNotifying);
+            stream = characteristic.value;
+            setState(() {
+              isReady = true;
+            });
+          }
+          if (characteristic.uuid.toString() == TARGET_CHARACTERISTIC) {
+            targetCharacteristic = characteristic;
+          }
+        }
+      }
+    }
+    isConnected = "conectado";
     if (!isReady) {
       _Pop();
     }
@@ -516,20 +493,8 @@ class _ChartsPageState extends State<ChartsPage> {
         backgroundColor: (prefs.darkMode)
           ?const Color(0xFF474864)
           :Colors.white,
-        title: Text(
-          '¿Estás seguro?',
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.tertiary,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        content: Text(
-          '¿Quieres desconectar el dispositivo y volver atrás?',
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.tertiary,
-            fontWeight: FontWeight.w300,
-          ),
-        ),
+        title: Text('¿Estás seguro?',style: TextStyle(color: Theme.of(context).colorScheme.tertiary,fontWeight: FontWeight.bold,),),
+        content: Text('¿Quieres desconectar el dispositivo y volver atrás?',style: TextStyle(color: Theme.of(context).colorScheme.tertiary,fontWeight: FontWeight.w300,),),
         actions: [
           TextButton(
             style: ButtonStyle(
@@ -555,6 +520,10 @@ class _ChartsPageState extends State<ChartsPage> {
               ),
             ),
             onPressed: () {
+              writeData('0');
+              setState(() {
+                verify = false;
+              });
               disconnectFromDevice();
               Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const HomePage()), (Route route) => false);
             },
@@ -633,6 +602,9 @@ class _ChartsPageState extends State<ChartsPage> {
               tiempo = _getTiempoTotal(_minutosTranscurridos, _segundosTranscurridos);
               totales = _fullDataList.length.toString();
               maximoStr = maximo.toStringAsFixed(2);
+              setState(() {
+                verify = false;
+              });
               disconnectFromDevice();
 
               fillList = false;
@@ -730,11 +702,64 @@ class _ChartsPageState extends State<ChartsPage> {
   }
   /* ==================== END INIT TIMERS ==================== */
 
+  /* ==================== POP ==================== */
   _Pop() {
     Navigator.of(context).pop(true);
   }
+  /* ==================== END POP ==================== */
 
+  /* ==================== DATA PARSER ==================== */
   String _dataParser(List<int> dataFromDevice) {
     return utf8.decode(dataFromDevice);
   }
+  /* ==================== END DATA PARSER ==================== */
+
+  /* ==================== VERIFY CONNECTION ==================== */
+  verifyConnection() async {
+    List<BluetoothDevice> connectedDevices = await FlutterBluePlus.instance.connectedDevices;
+    if (connectedDevices.contains(widget.device)) {
+      if (isConnected == "se desconecto") {
+        discoverServices();
+        writeData(widget.cut_method);
+
+        setState(() {
+          normalWidgets = true;
+        });
+      }
+    } else {
+      if (isConnected != "se desconecto") {
+        setState(() {
+          reconnectedSnack = true;
+          normalWidgets = false;
+        });
+        isConnected = "se desconecto";
+        const snack = SnackBar(
+          backgroundColor: Color.fromARGB(255, 255, 85, 7),
+          content: Center(
+            child: Text(
+              'Se ha perdido la conexión...',
+              style: TextStyle(color: Colors.white),
+            )
+          ),
+          duration: Duration(seconds: 3),
+        );
+        // ignore: use_build_context_synchronously
+        ScaffoldMessenger.of(context).showSnackBar(snack);
+
+        const snackReconnect = SnackBar(
+          backgroundColor: Colors.amber,
+          content: Center(
+            child: Text(
+              'Intentando reconectar...',
+              style: TextStyle(color: Colors.white),
+            )
+          ),
+          duration: Duration(seconds: 3),
+        );
+        // ignore: use_build_context_synchronously
+        ScaffoldMessenger.of(context).showSnackBar(snackReconnect);
+      }
+    }
+  }
+  /* ==================== END VERIFY CONNECTION ==================== */
 }
