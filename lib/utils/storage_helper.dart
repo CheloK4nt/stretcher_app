@@ -48,6 +48,11 @@ class StorageHelper {
     return file.writeAsString(data);
   }
 
+  static Future<String> localDocs() async {
+    String documentsPath = await AndroidPathProvider.documentsPath;
+    return documentsPath;
+  }
+
   // static Future<File> writeBytesToFile(String fileName, Uint8List data) async {
   //   final file = await _getLocalFile(fileName);
   //   return file.writeAsBytes(data);

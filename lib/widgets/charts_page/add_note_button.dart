@@ -12,18 +12,10 @@ class AddNoteBTN extends StatefulWidget {
 }
 
 class _AddNoteBTNState extends State<AddNoteBTN> {
-
-  final noteController = TextEditingController();
   
   setTiempo (){
     String tiempoNota = widget.tiempo;
     return tiempoNota;
-  }
-
-  @override
-  void dispose() {
-    noteController.dispose();
-    super.dispose();
   }
 
   @override
@@ -53,6 +45,8 @@ class _AddNoteBTNState extends State<AddNoteBTN> {
   }
 
   Future addNoteDialog() {
+
+    TextEditingController noteController = TextEditingController();
 
     final prefs = UserPrefs();
     double height = MediaQuery.of(context).size.height;

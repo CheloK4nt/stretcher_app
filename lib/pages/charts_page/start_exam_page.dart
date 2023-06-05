@@ -192,8 +192,9 @@ class _StartExamPageState extends State<StartExamPage> {
 
     Timer(const Duration(seconds: 8), () {
       if (!isReady) {
+        writeData('0');
         disconnectFromDevice();
-        _Pop();
+        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const HomePage()), (Route route) => false);
         const snack = SnackBar(
           backgroundColor: Colors.amber,
           content: Center(

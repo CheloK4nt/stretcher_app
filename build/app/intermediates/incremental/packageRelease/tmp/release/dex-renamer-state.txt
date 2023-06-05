@@ -1,0 +1,4 @@
+#Fri Jun 02 17:35:30 CLT 2023
+base.0=C\:\\Users\\desarrollador5.itisb\\Documents\\proyectos\\FlutterProyects\\exhalapp\\build\\app\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

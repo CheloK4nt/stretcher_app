@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names, prefer_final_fields, unused_import, no_leading_underscores_for_local_identifiers
+// ignore_for_file: non_constant_identifier_names, prefer_final_fields, unused_import, no_leading_underscores_for_local_identifiers, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 
@@ -50,7 +50,6 @@ class _ChartsPageState extends State<ChartsPage> {
   bool fillList = true;
   bool isCutPoint = false;
   bool verify = true;
-  bool reconnectedSnack = false;
   bool normalWidgets = true;
   Stream<List<int>>? stream;
   late BluetoothCharacteristic targetCharacteristic;
@@ -278,7 +277,7 @@ class _ChartsPageState extends State<ChartsPage> {
                       /* ==================== FIN VALOR ACTUAL ==================== */
 
                       /* ==================== ADD NOTE BUTTON ==================== */
-                      AddNoteBTN(notas: notas, tiempo: "$min:$seg",),
+                      AddNoteBTN(notas: notas, tiempo: "$min:$seg"),
                       /* ==================== END ADD-NOTE-BUTTON ==================== */
 
                       /* ==================== LINE CHART ==================== */
@@ -728,8 +727,12 @@ class _ChartsPageState extends State<ChartsPage> {
       }
     } else {
       if (isConnected != "se desconecto") {
+        
+        if (ModalRoute.of(context)?.isCurrent == false) { /* SI HAY UN ALERTDIALOG ACTIVO */
+          Navigator.pop(context);
+        }
+
         setState(() {
-          reconnectedSnack = true;
           normalWidgets = false;
         });
         isConnected = "se desconecto";
@@ -743,7 +746,6 @@ class _ChartsPageState extends State<ChartsPage> {
           ),
           duration: Duration(seconds: 3),
         );
-        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(snack);
 
         const snackReconnect = SnackBar(
@@ -756,7 +758,6 @@ class _ChartsPageState extends State<ChartsPage> {
           ),
           duration: Duration(seconds: 3),
         );
-        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(snackReconnect);
       }
     }

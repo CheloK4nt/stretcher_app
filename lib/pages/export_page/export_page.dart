@@ -47,6 +47,15 @@ class _ExportPageState extends State<ExportPage> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     double hxw = width * height;
+    String documentos = "x";
+    String resultado;
+
+    StorageHelper.localDocs().then((String result){
+      setState(() {
+        String resultado = "";
+        resultado = result;
+      });
+    });
 
     return WillPopScope(
       onWillPop: () async{
@@ -135,9 +144,14 @@ class _ExportPageState extends State<ExportPage> {
                         ),
                       ),
 
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Divider(),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(
+                          width * 0.05,
+                          height * 0.01,
+                          width * 0.05,
+                          0,
+                        ),
+                        child: const Divider(),
                       ),
               
                       (creatingFile == false)
@@ -182,8 +196,54 @@ class _ExportPageState extends State<ExportPage> {
                         )
                         :const CircularProgressIndicator(),
 
+                      Visibility(
+                        visible: !enableExport,
+                        child: Padding(
+                          padding: EdgeInsets.only(top: height * 0.01, bottom: height * 0.01),
+                          child: FutureBuilder(
+                            future: StorageHelper.localDocs(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                return RichText(
+                                  textAlign: TextAlign.center,
+                                  text: TextSpan(
+                                    style: TextStyle(
+                                    color: Theme.of(context).colorScheme.tertiary
+                                  ),
+                                    children: <TextSpan>[
+                                      const TextSpan(
+                                        text: "Los documentos fueron almacenados en\n",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w200
+                                        )
+                                      ),
+                                      TextSpan(
+                                        text: "${snapshot.data}/ExhalApp",
+                                        style: const TextStyle(fontWeight: FontWeight.bold)
+                                      ),
+                                    ]
+                                  )
+                                );
+                              } else {
+                                return Text(
+                                  "Datos exportados",
+                                  style: TextStyle(
+                                    color: Theme.of(context).colorScheme.tertiary
+                                  ),
+                                );
+                              }
+                            }
+                          ),
+                        ),
+                      ),
+
                       Padding(
-                        padding: EdgeInsets.all(hxw * 0.00005),
+                        padding: EdgeInsets.fromLTRB(
+                          width * 0.01,
+                          height * 0.01,
+                          width * 0.01,
+                          height * 0.01,
+                        ),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFF00C0FF),
