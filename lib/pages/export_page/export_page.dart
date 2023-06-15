@@ -47,15 +47,6 @@ class _ExportPageState extends State<ExportPage> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     double hxw = width * height;
-    String documentos = "x";
-    String resultado;
-
-    StorageHelper.localDocs().then((String result){
-      setState(() {
-        String resultado = "";
-        resultado = result;
-      });
-    });
 
     return WillPopScope(
       onWillPop: () async{
@@ -173,13 +164,16 @@ class _ExportPageState extends State<ExportPage> {
                               });
                               /* se exportan los datos */
                               StorageHelper.writeTextToFile(widget.fullDataString.toString()).then((value){
-                                for (var note in widget.notas) {
-                                  stringNotas = "$stringNotas${note.toString().substring(0,5)}";
-                                  stringNotas = "$stringNotas,";
-                                  stringNotas = "$stringNotas${note.toString().substring(5, note.toString().length)};\n";
+                                if (widget.notas.isNotEmpty) {
+                                  for (var note in widget.notas) {
+                                    if (note.toString().length >= 5) {
+                                      stringNotas = "$stringNotas${note.toString().substring(0,5)}";
+                                      stringNotas = "$stringNotas,";
+                                      stringNotas = "$stringNotas${note.toString().substring(5, note.toString().length)};\n";
+                                    }
+                                  }
+                                  StorageHelper.writeNotesToFile(stringNotas);
                                 }
-                                StorageHelper.writeNotesToFile(stringNotas);
-
                                 setState(() {
                                   creatingFile = false;
                                   enableExport = false;

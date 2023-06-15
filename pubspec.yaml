@@ -21,6 +21,7 @@ dependencies:
   flutter_native_splash:
   fluttertoast: ^8.2.2
   http: ^0.13.6
+  flutter_pin_code_fields: ^2.2.0
 
 dev_dependencies:
   flutter_test:

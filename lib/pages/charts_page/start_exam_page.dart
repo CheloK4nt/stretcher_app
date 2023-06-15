@@ -4,10 +4,12 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:exhalapp/pages/charts_page/charts_page.dart';
+import 'package:exhalapp/pages/charts_page/hidden_charts_page.dart';
 import 'package:exhalapp/pages/homepage/homepage.dart';
 import 'package:exhalapp/providers/shared_pref.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
+import 'package:flutter_pin_code_fields/flutter_pin_code_fields.dart';
 
 class StartExamPage extends StatefulWidget {
   const StartExamPage({super.key, required this.device});
@@ -26,23 +28,15 @@ class _StartExamPageState extends State<StartExamPage> {
   Stream<List<int>>? stream;
   String selectedCut = "x";
   late BluetoothCharacteristic targetCharacteristic;
+
+  int tapCount = 0;
+  bool comparativeMode = false;
   
   @override
   void initState() {   
     super.initState();
-
     isReady = false;
     tryConnect();
-  }
-
-  void tryConnect() async{
-    List<BluetoothDevice> connectedDevices = await FlutterBluePlus.instance.connectedDevices;
-
-    if (connectedDevices.contains(widget.device)) {
-      discoverServices();
-    } else {
-      await connectToDevice();
-    }
   }
 
   @override
@@ -83,12 +77,29 @@ class _StartExamPageState extends State<StartExamPage> {
               children: [
                 Padding(
                   padding: EdgeInsets.all((height * width) * 0.00009),
-                  child: Text(
-                    "Seleccione el método de corte",
-                    style: TextStyle(
-                      fontSize: (height * width) * 0.00008,
-                      fontWeight: FontWeight.w200,
-                      color: Theme.of(context).colorScheme.tertiary,
+                  child: InkWell(
+                    onTap: (){
+                      setState(() {
+                        tapCount = tapCount + 1;
+                      });
+                      if (tapCount == 10) {
+                        _pinCodeDialog();
+                        setState(() {
+                          tapCount = 0;
+                        });
+                      }
+                    },
+                    focusColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    splashColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    child: Text(
+                      "Seleccione el método de corte",
+                      style: TextStyle(
+                        fontSize: (height * width) * 0.00008,
+                        fontWeight: FontWeight.w200,
+                        color: Theme.of(context).colorScheme.tertiary,
+                      ),
                     ),
                   ),
                 ),
@@ -108,7 +119,7 @@ class _StartExamPageState extends State<StartExamPage> {
                       child: Ink(
                         decoration: BoxDecoration(
                           color: (selectedCut == "1")?Colors.blue :const Color(0xFFD9D9D9),
-                          borderRadius: BorderRadius.circular(25)
+                          borderRadius: BorderRadius.circular(25),
                         ),
                         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 8),
                         child: Text(
@@ -165,7 +176,11 @@ class _StartExamPageState extends State<StartExamPage> {
                     onPressed: (selectedCut != "x")
                     ?(){
                       writeData(selectedCut);
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChartsPage(device: widget.device, cut_method: selectedCut,)));}
+                      if (comparativeMode == true) {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => HiddenChartsPage(device: widget.device, cut_method: selectedCut,)));
+                      } else {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChartsPage(device: widget.device, cut_method: selectedCut,)));}
+                      }
                     :null,
                     child: const Text("Iniciar exámen", style: TextStyle(fontWeight: FontWeight.w400),),
                   )
@@ -173,6 +188,13 @@ class _StartExamPageState extends State<StartExamPage> {
                     color: Color(0xFF0071E4),
                   ),
                 ),
+
+                (comparativeMode == true)
+                  ?const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("Modo Comparativo"),
+                  )
+                  :const Text("Normal", style: TextStyle(color: Colors.transparent),)
               ],
             ),
           ),
@@ -182,6 +204,19 @@ class _StartExamPageState extends State<StartExamPage> {
   }
 
 /* ----------------------------------------------------------------------------------------------------- */
+
+  /* ==================== tryCONNECT TO DEVICE VOID ==================== */
+  void tryConnect() async{
+    List<BluetoothDevice> connectedDevices = await FlutterBluePlus.instance.connectedDevices;
+
+    if (connectedDevices.contains(widget.device)) {
+      discoverServices();
+    } else {
+      await connectToDevice();
+    }
+  }
+  /* ==================== END tryCONNECT TO DEVICE VOID ==================== */
+
   /* ==================== CONNECT TO DEVICE VOID ==================== */
   connectToDevice() async {
     // ignore: unnecessary_null_comparison
@@ -369,4 +404,78 @@ class _StartExamPageState extends State<StartExamPage> {
   _Pop() {
     Navigator.of(context).pop(true);
   }
+
+  /* ==================== PIN CODE DIALOG  ==================== */
+  Future<bool> _pinCodeDialog() {
+
+    final prefs = UserPrefs();
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
+    return showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular((height * width) * 0.0001),
+          side: BorderSide(
+            color: (prefs.darkMode)
+              ?const Color(0xFF0071E4)
+              :const Color(0xFFD3D3D3)
+          )
+        ),
+        actionsAlignment: MainAxisAlignment.center,
+        backgroundColor: (prefs.darkMode)
+          ?const Color(0xFF474864)
+          :Colors.white,
+        title: Text(
+          'Ingrese PIN de seguridad',
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.tertiary,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: SizedBox(
+          width: width * 0.8,
+          height: height * 0.07,
+          child: Center(
+            child: PinCodeFields(
+              // activeBorderColor: Colors.transparent,
+              fieldBorderStyle: FieldBorderStyle.bottom,
+              keyboardType: TextInputType.number,
+              autofocus: true,
+              responsive: true,
+              length: 4,
+              obscureText: true,
+              obscureCharacter: "🔵",
+              onComplete: (String value) {
+                if (value == "3927") {
+                  setState(() {
+                    comparativeMode = true;
+                  });
+                }
+                Navigator.of(context).pop(false);
+              },
+              
+            ),
+          ),
+        ),
+        actions: [
+          TextButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(const Color(0xFF0071E4)),
+              foregroundColor: MaterialStateProperty.all(Colors.white),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular((height*width) * 0.00007)
+                )
+              ),
+            ),
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('Cancelar')
+          ),
+        ],
+      ),
+    ).then((value) => false);
+  }
+  /* ==================== END PIN CODE DIALOG  ==================== */
 }

@@ -134,6 +134,12 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "flutter_pin_code_fields",
+      "rootUri": "file:///C:/Users/desarrollador5.itisb/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_pin_code_fields-2.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
       "name": "flutter_test",
       "rootUri": "file:///C:/Users/desarrollador5.itisb/Documents/lenguajes/flutter/packages/flutter_test",
       "packageUri": "lib/",
@@ -488,7 +494,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-06-05T14:01:15.245529Z",
+  "generated": "2023-06-09T15:28:34.876949Z",
   "generator": "pub",
   "generatorVersion": "2.19.4"
 }
