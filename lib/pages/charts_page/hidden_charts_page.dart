@@ -270,7 +270,7 @@ class _HiddenChartsPageState extends State<HiddenChartsPage> {
                                         foregroundColor: const Color(0xFF00C0FF),
                                       ),
                                       onPressed: () => _stopExamModal(corte),
-                                      child: const Text("Terminar exámen"),
+                                      child: const Text("Terminar examen"),
                                     ),
                                   ),
                                   /* ========== FIN TERMINAR EXAMEN ========== */
@@ -520,14 +520,14 @@ class _HiddenChartsPageState extends State<HiddenChartsPage> {
           ?const Color(0xFF474864)
           :Colors.white,
         title: Text(
-          'Finalizar exámen',
+          'Finalizar examen',
           style: TextStyle(
             color: Theme.of(context).colorScheme.tertiary,
             fontWeight: FontWeight.bold,
           ),
         ),
         content: Text(
-          '¿Desea finalizar el exámen?',
+          '¿Desea finalizar el examen?',
           style: TextStyle(
             color: Theme.of(context).colorScheme.tertiary,
             fontWeight: FontWeight.w300,

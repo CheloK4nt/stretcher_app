@@ -182,7 +182,7 @@ class _StartExamPageState extends State<StartExamPage> {
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChartsPage(device: widget.device, cut_method: selectedCut,)));}
                       }
                     :null,
-                    child: const Text("Iniciar exámen", style: TextStyle(fontWeight: FontWeight.w400),),
+                    child: const Text("Iniciar examen", style: TextStyle(fontWeight: FontWeight.w400),),
                   )
                   :const LinearProgressIndicator(
                     color: Color(0xFF0071E4),
