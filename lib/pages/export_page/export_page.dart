@@ -69,7 +69,7 @@ class _ExportPageState extends State<ExportPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Resumen exámen",
+                "Resumen examen",
                 style: TextStyle(
                   fontSize: hxw * 0.00009,
                   fontWeight: FontWeight.w200
