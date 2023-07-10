@@ -56,6 +56,7 @@ class _HiddenChartsPageState extends State<HiddenChartsPage> {
   List<MyData> _dataPointList2 = List.empty(growable: true); /* Lista 2 grafico mmhg */
 
   List _fullDataList = List.empty(growable: true); /* Lista historica de datos */
+  String _cutPointList = "";
   String _fullDataString = "";
 
   int _miliSegundosTranscurridos = 0; /* milisegundos transcurridos desde que empieza el examen */
@@ -571,7 +572,15 @@ class _HiddenChartsPageState extends State<HiddenChartsPage> {
 
               fillList = false;
               Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
-                builder: (context) => ExportPage(fullDataString: _fullDataString, fullDataList: _fullDataList, corte: corte, tiempo: tiempo, totales: totales, maximo: maximoStr, notas: notas,)
+                builder: (context) => ExportPage(
+                  fullDataString: _fullDataString,
+                  fullDataList: _fullDataList,
+                  cutPointList: _cutPointList,
+                  corte: corte,
+                  tiempo: tiempo,
+                  totales: totales,
+                  maximo: maximoStr,
+                  notas: notas,)
               ), (Route route) => false);
             },
             child: const Text('Finalizar')

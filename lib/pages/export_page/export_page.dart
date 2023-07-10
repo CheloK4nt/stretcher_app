@@ -15,6 +15,7 @@ class ExportPage extends StatefulWidget {
     super.key,
     required this.fullDataList,
     required this.fullDataString,
+    required this.cutPointList,
     required this.corte,
     required this.tiempo,
     required this.totales,
@@ -23,6 +24,7 @@ class ExportPage extends StatefulWidget {
   });
   final List fullDataList;
   final String fullDataString;
+  final String cutPointList;
   final String corte;
   final String tiempo;
   final String totales;
@@ -164,6 +166,7 @@ class _ExportPageState extends State<ExportPage> {
                               });
                               /* se exportan los datos */
                               StorageHelper.writeTextToFile(widget.fullDataString.toString()).then((value){
+                                StorageHelper.writeCutPointsToFile(widget.cutPointList.toString());
                                 if (widget.notas.isNotEmpty) {
                                   for (var note in widget.notas) {
                                     if (note.toString().length >= 5) {

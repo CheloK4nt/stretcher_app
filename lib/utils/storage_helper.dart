@@ -24,6 +24,11 @@ class StorageHelper {
     return File("$path/fullDataList.txt");
   }
 
+  static Future<File> get _localCutPointsFile async{
+    final path = await _localPath;
+    return File("$path/cutPointList.txt");
+  }
+
   static Future<File> get _localNotesFile async{
     final path = await _localPath;
     return File("$path/notesFile.txt");
@@ -40,6 +45,11 @@ class StorageHelper {
 
   static Future<File> writeTextToFile(String data) async {
     final file = await _localFile;
+    return file.writeAsString(data);
+  }
+
+  static Future<File> writeCutPointsToFile(String data) async {
+    final file = await _localCutPointsFile;
     return file.writeAsString(data);
   }
 

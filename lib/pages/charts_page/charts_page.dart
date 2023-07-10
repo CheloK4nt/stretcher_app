@@ -71,6 +71,7 @@ class _ChartsPageState extends State<ChartsPage> {
   List<MyData> _dataPointListY2 = List.empty(growable: true); /* Lista 2 para grafico % */
 
   List _fullDataList = List.empty(growable: true); /* Lista historica de datos */
+  String _cutPointList = "";
   String _fullDataString = "";
 
   int _miliSegundosTranscurridos = 0; /* milisegundos transcurridos desde que empieza el examen */
@@ -81,6 +82,8 @@ class _ChartsPageState extends State<ChartsPage> {
   late Timer _timerSeg;
   late Timer _timerMin;
   String min="00", seg ="00", mili = "0000";
+  String seg_actual = "";
+  String seg_anterior = "0";
 
   String tiempo = "";
   String totales = "";
@@ -360,6 +363,12 @@ class _ChartsPageState extends State<ChartsPage> {
         _dataPointList.add(MyData(_dataPointList.length, valor));
         _dataPointListX.add(MyData(_dataPointListX.length, (valor * 0.133322)));
         _dataPointListY.add(MyData(_dataPointListY.length, (valor / 7.6)));
+
+        seg_actual = seg;
+        if (int.parse(seg_actual) > (int.parse(seg_anterior) + 2)) {
+          _cutPointList = "$_cutPointList$min$seg_actual$mili-$valor;\n";
+          seg_anterior = seg_actual;
+        }
       }
 
       _dataList2 = [];
@@ -608,7 +617,15 @@ class _ChartsPageState extends State<ChartsPage> {
 
               fillList = false;
               Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
-                builder: (context) => ExportPage(fullDataString: _fullDataString, fullDataList: _fullDataList, corte: corte, tiempo: tiempo, totales: totales, maximo: maximoStr, notas: notas,)
+                builder: (context) => ExportPage(
+                  fullDataString: _fullDataString,
+                  fullDataList: _fullDataList,
+                  cutPointList: _cutPointList,
+                  corte: corte,
+                  tiempo: tiempo,
+                  totales: totales,
+                  maximo: maximoStr,
+                  notas: notas,)
               ), (Route route) => false);
             },
             child: const Text('Finalizar')
