@@ -77,13 +77,15 @@ class _ChartsPageState extends State<ChartsPage> {
   int _miliSegundosTranscurridos = 0; /* milisegundos transcurridos desde que empieza el examen */
   int _segundosTranscurridos = 0; /* segundos transcurridos desde que empieza el examen */
   int _minutosTranscurridos = 0; /* minutos transcurridos desde que empieza el examen */
+  int _segCutPoint = 0;
 
   late Timer _timerMiliSeg;
   late Timer _timerSeg;
   late Timer _timerMin;
+  late Timer _timerCutPoint;
   String min="00", seg ="00", mili = "0000";
-  String seg_actual = "";
-  String seg_anterior = "0";
+  String seg_actual = "0";
+  String seg_anterior = "-99";
 
   String tiempo = "";
   String totales = "";
@@ -109,6 +111,7 @@ class _ChartsPageState extends State<ChartsPage> {
     _timerMiliSeg.cancel();
     _timerSeg.cancel();
     _timerMin.cancel();
+    _timerCutPoint.cancel();
     super.dispose();
   }
 
@@ -364,9 +367,9 @@ class _ChartsPageState extends State<ChartsPage> {
         _dataPointListX.add(MyData(_dataPointListX.length, (valor * 0.133322)));
         _dataPointListY.add(MyData(_dataPointListY.length, (valor / 7.6)));
 
-        seg_actual = seg;
-        if (int.parse(seg_actual) > (int.parse(seg_anterior) + 2)) {
-          _cutPointList = "$_cutPointList$min$seg_actual$mili-$valor;\n";
+        seg_actual = _segCutPoint.toString();
+        if (int.parse(seg_actual) >= (int.parse(seg_anterior) + 2)) {
+          _cutPointList = "$_cutPointList$min$seg$mili-$valor;\n";
           seg_anterior = seg_actual;
         }
       }
@@ -701,6 +704,12 @@ class _ChartsPageState extends State<ChartsPage> {
         } else if (_segundosTranscurridos < 60){
           seg = "$_segundosTranscurridos";
         }
+      });
+    });
+
+    _timerCutPoint = Timer.periodic(const Duration(seconds: 1), (Timer timer) {
+      setState(() {
+        _segCutPoint++;
       });
     });
 
