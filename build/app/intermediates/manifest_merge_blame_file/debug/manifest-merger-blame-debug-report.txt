@@ -13,56 +13,56 @@
 13         to allow setting breakpoints, to provide hot reload, etc.
 14    -->
 15    <uses-permission android:name="android.permission.INTERNET" />
-15-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\android\app\src\debug\AndroidManifest.xml:7:5-66
-15-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\android\app\src\debug\AndroidManifest.xml:7:22-64
+15-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\debug\AndroidManifest.xml:7:5-66
+15-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\debug\AndroidManifest.xml:7:22-64
 16    <!-- Allow Bluetooth -->
 17    <uses-feature
-17-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\android\app\src\main\AndroidManifest.xml:5:5-90
+17-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\main\AndroidManifest.xml:5:5-90
 18        android:name="android.hardware.bluetooth_le"
-18-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\android\app\src\main\AndroidManifest.xml:5:19-63
+18-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\main\AndroidManifest.xml:5:19-63
 19        android:required="true" /> <!-- Permissions options for the `storage` group -->
-19-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\android\app\src\main\AndroidManifest.xml:5:64-87
+19-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\main\AndroidManifest.xml:5:64-87
 20    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-20-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\android\app\src\main\AndroidManifest.xml:8:5-79
-20-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\android\app\src\main\AndroidManifest.xml:8:22-77
+20-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\main\AndroidManifest.xml:8:5-79
+20-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\main\AndroidManifest.xml:8:22-77
 21    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- Permissions options for the `manage external storage` group -->
-21-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\android\app\src\main\AndroidManifest.xml:9:5-80
-21-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\android\app\src\main\AndroidManifest.xml:9:22-78
+21-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\main\AndroidManifest.xml:9:5-80
+21-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\main\AndroidManifest.xml:9:22-78
 22    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" /> <!-- Permissions options for the `location` group -->
-22-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\android\app\src\main\AndroidManifest.xml:11:5-82
-22-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\android\app\src\main\AndroidManifest.xml:11:22-79
+22-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\main\AndroidManifest.xml:11:5-82
+22-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\main\AndroidManifest.xml:11:22-79
 23    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-23-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\android\app\src\main\AndroidManifest.xml:14:5-79
-23-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\android\app\src\main\AndroidManifest.xml:14:22-76
+23-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\main\AndroidManifest.xml:14:5-79
+23-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\main\AndroidManifest.xml:14:22-76
 24    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-24-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\android\app\src\main\AndroidManifest.xml:15:5-81
-24-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\android\app\src\main\AndroidManifest.xml:15:22-78
+24-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\main\AndroidManifest.xml:15:5-81
+24-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\main\AndroidManifest.xml:15:22-78
 25    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" /> <!-- Permissions options for the `nearby devices` group -->
-25-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\android\app\src\main\AndroidManifest.xml:16:5-85
-25-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\android\app\src\main\AndroidManifest.xml:16:22-82
+25-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\main\AndroidManifest.xml:16:5-85
+25-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\main\AndroidManifest.xml:16:22-82
 26    <!-- <uses-permission android:name="android.permission.BLUETOOTH" /> -->
 27    <!-- <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" /> -->
 28    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
-28-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\android\app\src\main\AndroidManifest.xml:21:5-73
-28-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\android\app\src\main\AndroidManifest.xml:21:22-70
+28-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\main\AndroidManifest.xml:21:5-73
+28-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\main\AndroidManifest.xml:21:22-70
 29    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
-29-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\android\app\src\main\AndroidManifest.xml:22:5-78
-29-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\android\app\src\main\AndroidManifest.xml:22:22-75
+29-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\main\AndroidManifest.xml:22:5-78
+29-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\main\AndroidManifest.xml:22:22-75
 30    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" /> <!-- Request legacy Bluetooth permissions on older devices. -->
-30-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\android\app\src\main\AndroidManifest.xml:23:5-76
-30-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\android\app\src\main\AndroidManifest.xml:23:22-73
+30-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\main\AndroidManifest.xml:23:5-76
+30-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\main\AndroidManifest.xml:23:22-73
 31    <uses-permission
-31-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\android\app\src\main\AndroidManifest.xml:26:5-95
+31-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\main\AndroidManifest.xml:26:5-95
 32        android:name="android.permission.BLUETOOTH"
-32-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\android\app\src\main\AndroidManifest.xml:26:22-65
+32-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\main\AndroidManifest.xml:26:22-65
 33        android:maxSdkVersion="30" />
-33-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\android\app\src\main\AndroidManifest.xml:26:66-92
+33-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\main\AndroidManifest.xml:26:66-92
 34    <uses-permission
-34-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\android\app\src\main\AndroidManifest.xml:27:5-101
+34-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\main\AndroidManifest.xml:27:5-101
 35        android:name="android.permission.BLUETOOTH_ADMIN"
-35-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\android\app\src\main\AndroidManifest.xml:27:22-71
+35-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\main\AndroidManifest.xml:27:22-71
 36        android:maxSdkVersion="30" />
-36-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\android\app\src\main\AndroidManifest.xml:27:72-98
+36-->C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\main\AndroidManifest.xml:27:72-98
 37
 38    <application
 39        android:name="android.app.Application"
@@ -105,15 +105,15 @@
 75            android:value="2" />
 76
 77        <service
-77-->[:location] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\location\intermediates\merged_manifest\debug\AndroidManifest.xml:13:9-17:56
+77-->[:location] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\build\location\intermediates\merged_manifest\debug\AndroidManifest.xml:13:9-17:56
 78            android:name="com.lyokone.location.FlutterLocationService"
-78-->[:location] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\location\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-71
+78-->[:location] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\build\location\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-71
 79            android:enabled="true"
-79-->[:location] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\location\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-35
+79-->[:location] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\build\location\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-35
 80            android:exported="false"
-80-->[:location] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\location\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-37
+80-->[:location] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\build\location\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-37
 81            android:foregroundServiceType="location" />
-81-->[:location] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\exhalapp\build\location\intermediates\merged_manifest\debug\AndroidManifest.xml:17:13-53
+81-->[:location] C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\build\location\intermediates\merged_manifest\debug\AndroidManifest.xml:17:13-53
 82
 83        <uses-library
 83-->[androidx.window:window:1.0.0-beta04] C:\Users\desarrollador5.itisb\.gradle\caches\transforms-3\dee59bb480020f42d53c2ea15e4501f7\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40

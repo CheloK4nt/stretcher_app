@@ -736,14 +736,14 @@
             "outputFile": "com.example.exhalapp-merged_res-17:/values-night-v8_values-night-v8.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\desarrollador5.itisb\\Documents\\proyectos\\FlutterProyects\\exhalapp\\android\\app\\src\\main\\res\\values-night\\styles.xml",
+                    "source": "C:\\Users\\desarrollador5.itisb\\Documents\\proyectos\\FlutterProyects\\stretcher_app\\android\\app\\src\\main\\res\\values-night\\styles.xml",
                     "from": {
                         "startLines": "3,18",
                         "startColumns": "4,4",
-                        "startOffsets": "172,1094",
+                        "startOffsets": "175,1106",
                         "endLines": "11,20",
                         "endColumns": "12,12",
-                        "endOffsets": "747,1258"
+                        "endOffsets": "757,1272"
                     },
                     "to": {
                         "startLines": "2,10",
@@ -1264,14 +1264,14 @@
             "outputFile": "com.example.exhalapp-merged_res-17:/values-v31_values-v31.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\desarrollador5.itisb\\Documents\\proyectos\\FlutterProyects\\exhalapp\\android\\app\\src\\main\\res\\values-v31\\styles.xml",
+                    "source": "C:\\Users\\desarrollador5.itisb\\Documents\\proyectos\\FlutterProyects\\stretcher_app\\android\\app\\src\\main\\res\\values-v31\\styles.xml",
                     "from": {
                         "startLines": "3,17",
                         "startColumns": "4,4",
-                        "startOffsets": "173,1041",
+                        "startOffsets": "176,1053",
                         "endLines": "10,19",
                         "endColumns": "12,12",
-                        "endOffsets": "685,1205"
+                        "endOffsets": "695,1219"
                     },
                     "to": {
                         "startLines": "2,10",
@@ -1455,6 +1455,25 @@
                     }
                 },
                 {
+                    "source": "C:\\Users\\desarrollador5.itisb\\Documents\\proyectos\\FlutterProyects\\stretcher_app\\android\\app\\src\\main\\res\\values\\styles.xml",
+                    "from": {
+                        "startLines": "3,18",
+                        "startColumns": "4,4",
+                        "startOffsets": "176,1107",
+                        "endLines": "11,20",
+                        "endColumns": "12,12",
+                        "endOffsets": "758,1273"
+                    },
+                    "to": {
+                        "startLines": "130,138",
+                        "startColumns": "4,4",
+                        "startOffsets": "9193,9645",
+                        "endLines": "137,140",
+                        "endColumns": "12,12",
+                        "endOffsets": "9640,9809"
+                    }
+                },
+                {
                     "source": "C:\\Users\\desarrollador5.itisb\\.gradle\\caches\\transforms-3\\dee59bb480020f42d53c2ea15e4501f7\\transformed\\jetified-window-1.0.0-beta04\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,7,8,9,10,11,19,23,34,51",
@@ -1524,25 +1543,6 @@
                         "startOffsets": "6548",
                         "endColumns": "42",
                         "endOffsets": "6586"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\desarrollador5.itisb\\Documents\\proyectos\\FlutterProyects\\exhalapp\\android\\app\\src\\main\\res\\values\\styles.xml",
-                    "from": {
-                        "startLines": "3,18",
-                        "startColumns": "4,4",
-                        "startOffsets": "173,1095",
-                        "endLines": "11,20",
-                        "endColumns": "12,12",
-                        "endOffsets": "748,1259"
-                    },
-                    "to": {
-                        "startLines": "130,138",
-                        "startColumns": "4,4",
-                        "startOffsets": "9193,9645",
-                        "endLines": "137,140",
-                        "endColumns": "12,12",
-                        "endOffsets": "9640,9809"
                     }
                 }
             ]
@@ -3696,14 +3696,14 @@
             "outputFile": "com.example.exhalapp-merged_res-17:/values-night-v31_values-night-v31.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\desarrollador5.itisb\\Documents\\proyectos\\FlutterProyects\\exhalapp\\android\\app\\src\\main\\res\\values-night-v31\\styles.xml",
+                    "source": "C:\\Users\\desarrollador5.itisb\\Documents\\proyectos\\FlutterProyects\\stretcher_app\\android\\app\\src\\main\\res\\values-night-v31\\styles.xml",
                     "from": {
                         "startLines": "3,17",
                         "startColumns": "4,4",
-                        "startOffsets": "173,1041",
+                        "startOffsets": "176,1053",
                         "endLines": "10,19",
                         "endColumns": "12,12",
-                        "endOffsets": "685,1205"
+                        "endOffsets": "695,1219"
                     },
                     "to": {
                         "startLines": "2,10",
