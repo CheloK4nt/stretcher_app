@@ -3,10 +3,10 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:exhalapp/pages/charts_page/charts_page.dart';
-import 'package:exhalapp/pages/charts_page/hidden_charts_page.dart';
-import 'package:exhalapp/pages/homepage/homepage.dart';
-import 'package:exhalapp/providers/shared_pref.dart';
+import 'package:stretcherapp/pages/charts_page/charts_page.dart';
+import 'package:stretcherapp/pages/charts_page/hidden_charts_page.dart';
+import 'package:stretcherapp/pages/homepage/homepage.dart';
+import 'package:stretcherapp/providers/shared_pref.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:flutter_pin_code_fields/flutter_pin_code_fields.dart';

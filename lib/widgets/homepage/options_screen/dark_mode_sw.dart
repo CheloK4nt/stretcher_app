@@ -1,6 +1,6 @@
 
-import 'package:exhalapp/providers/shared_pref.dart';
-import 'package:exhalapp/providers/theme_provider.dart';
+import 'package:stretcherapp/providers/shared_pref.dart';
+import 'package:stretcherapp/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

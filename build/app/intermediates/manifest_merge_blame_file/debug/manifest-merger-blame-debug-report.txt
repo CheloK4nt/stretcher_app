@@ -1,6 +1,6 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-3    package="com.example.exhalapp"
+3    package="com.example.stretcherapp"
 4    android:versionCode="1"
 5    android:versionName="0.1.0" >
 6
@@ -70,9 +70,9 @@
 40-->[androidx.core:core:1.8.0] C:\Users\desarrollador5.itisb\.gradle\caches\transforms-3\270e9501dde0430a83746f97bf9ab544\transformed\core-1.8.0\AndroidManifest.xml:24:18-86
 41        android:debuggable="true"
 42        android:icon="@mipmap/ic_launcher"
-43        android:label="ExhalApp" >
+43        android:label="StretcherApp" >
 44        <activity
-45            android:name="com.example.exhalapp.MainActivity"
+45            android:name="com.example.stretcherapp.MainActivity"
 46            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
 47            android:exported="true"
 48            android:hardwareAccelerated="true"

@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.example.exhalapp",
+  "applicationId": "com.example.stretcherapp",
   "variantName": "debug",
   "elements": [
     {

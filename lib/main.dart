@@ -1,7 +1,7 @@
-import 'package:exhalapp/pages/bt_permission_page/bt_permission_page.dart';
-import 'package:exhalapp/providers/shared_pref.dart';
-import 'package:exhalapp/providers/theme_provider.dart';
-import 'package:exhalapp/providers/ui_provider.dart';
+import 'package:stretcherapp/pages/bt_permission_page/bt_permission_page.dart';
+import 'package:stretcherapp/providers/shared_pref.dart';
+import 'package:stretcherapp/providers/theme_provider.dart';
+import 'package:stretcherapp/providers/ui_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';

@@ -1,6 +1,6 @@
-import 'package:exhalapp/widgets/bt_permission_page/bt_granted/bt_loading.dart';
-import 'package:exhalapp/widgets/bt_permission_page/bt_granted/bt_off.dart';
-import 'package:exhalapp/widgets/bt_permission_page/bt_granted/bt_on.dart';
+import 'package:stretcherapp/widgets/bt_permission_page/bt_granted/bt_loading.dart';
+import 'package:stretcherapp/widgets/bt_permission_page/bt_granted/bt_off.dart';
+import 'package:stretcherapp/widgets/bt_permission_page/bt_granted/bt_on.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 

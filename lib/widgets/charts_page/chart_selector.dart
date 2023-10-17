@@ -1,4 +1,4 @@
-import 'package:exhalapp/providers/ui_provider.dart';
+import 'package:stretcherapp/providers/ui_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

@@ -488,13 +488,13 @@
       "languageVersion": "2.19"
     },
     {
-      "name": "exhalapp",
+      "name": "stretcherapp",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-10-16T19:12:45.285623Z",
+  "generated": "2023-10-17T14:08:26.458517Z",
   "generator": "pub",
   "generatorVersion": "2.19.4"
 }

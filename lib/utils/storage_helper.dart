@@ -9,7 +9,7 @@ class StorageHelper {
 
   static Future<String> get _localPath async {
     final documentsPath = await AndroidPathProvider.documentsPath;
-    final directory = "$documentsPath/ExhalApp";
+    final directory = "$documentsPath/stretcherapp";
     final folder = Directory(directory);
     if (await folder.exists()) {
       // print("folder existe");

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.exhalapp-mergeDebugResources-15:/values-ky/values-ky.xml",
+            "outputFile": "com.example.stretcherapp-mergeDebugResources-15:/values-ky/values-ky.xml",
             "map": [
                 {
                     "source": "C:\\Users\\desarrollador5.itisb\\.gradle\\caches\\transforms-3\\270e9501dde0430a83746f97bf9ab544\\transformed\\core-1.8.0\\res\\values-ky\\values-ky.xml",

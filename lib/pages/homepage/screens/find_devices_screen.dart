@@ -1,5 +1,5 @@
-import 'package:exhalapp/pages/charts_page/start_exam_page.dart';
-import 'package:exhalapp/widgets.dart';
+import 'package:stretcherapp/pages/charts_page/start_exam_page.dart';
+import 'package:stretcherapp/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 

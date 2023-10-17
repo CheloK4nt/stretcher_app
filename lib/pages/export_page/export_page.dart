@@ -1,12 +1,12 @@
-import 'package:exhalapp/pages/homepage/homepage.dart';
-import 'package:exhalapp/providers/shared_pref.dart';
-import 'package:exhalapp/utils/storage_helper.dart';
-import 'package:exhalapp/widgets/export_page/cut_method_card.dart';
-import 'package:exhalapp/widgets/export_page/data_card.dart';
-import 'package:exhalapp/widgets/export_page/frec_resp.dart';
-import 'package:exhalapp/widgets/export_page/max_card.dart';
-import 'package:exhalapp/widgets/export_page/notes_card.dart';
-import 'package:exhalapp/widgets/export_page/time_card.dart';
+import 'package:stretcherapp/pages/homepage/homepage.dart';
+import 'package:stretcherapp/providers/shared_pref.dart';
+import 'package:stretcherapp/utils/storage_helper.dart';
+import 'package:stretcherapp/widgets/export_page/cut_method_card.dart';
+import 'package:stretcherapp/widgets/export_page/data_card.dart';
+import 'package:stretcherapp/widgets/export_page/frec_resp.dart';
+import 'package:stretcherapp/widgets/export_page/max_card.dart';
+import 'package:stretcherapp/widgets/export_page/notes_card.dart';
+import 'package:stretcherapp/widgets/export_page/time_card.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -215,7 +215,7 @@ class _ExportPageState extends State<ExportPage> {
                                         )
                                       ),
                                       TextSpan(
-                                        text: "${snapshot.data}/ExhalApp",
+                                        text: "${snapshot.data}/stretcherapp",
                                         style: const TextStyle(fontWeight: FontWeight.bold)
                                       ),
                                     ]

@@ -3,15 +3,15 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:exhalapp/pages/export_page/export_page.dart';
-import 'package:exhalapp/pages/homepage/homepage.dart';
-import 'package:exhalapp/providers/shared_pref.dart';
-import 'package:exhalapp/providers/ui_provider.dart';
-import 'package:exhalapp/widgets/charts_page/add_note_button.dart';
-import 'package:exhalapp/widgets/charts_page/chart_selector.dart';
-import 'package:exhalapp/widgets/charts_page/waiting_data_cpi.dart';
-import 'package:exhalapp/widgets/hidden_charts_page/line_chart.dart';
-import 'package:exhalapp/widgets/charts_page/values.dart';
+import 'package:stretcherapp/pages/export_page/export_page.dart';
+import 'package:stretcherapp/pages/homepage/homepage.dart';
+import 'package:stretcherapp/providers/shared_pref.dart';
+import 'package:stretcherapp/providers/ui_provider.dart';
+import 'package:stretcherapp/widgets/charts_page/add_note_button.dart';
+import 'package:stretcherapp/widgets/charts_page/chart_selector.dart';
+import 'package:stretcherapp/widgets/charts_page/waiting_data_cpi.dart';
+import 'package:stretcherapp/widgets/hidden_charts_page/line_chart.dart';
+import 'package:stretcherapp/widgets/charts_page/values.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:provider/provider.dart';

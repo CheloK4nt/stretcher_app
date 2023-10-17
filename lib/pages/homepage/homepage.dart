@@ -1,6 +1,6 @@
-import 'package:exhalapp/pages/homepage/screens/find_devices_screen.dart';
-import 'package:exhalapp/pages/homepage/screens/options_screen.dart';
-import 'package:exhalapp/widgets/bt_permission_page/bt_granted.dart';
+import 'package:stretcherapp/pages/homepage/screens/find_devices_screen.dart';
+import 'package:stretcherapp/pages/homepage/screens/options_screen.dart';
+import 'package:stretcherapp/widgets/bt_permission_page/bt_granted.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:location/location.dart';

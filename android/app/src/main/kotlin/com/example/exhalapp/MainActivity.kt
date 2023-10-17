@@ -1,4 +1,4 @@
-package com.example.exhalapp
+package com.example.stretcherapp
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,4 +1,4 @@
-com.example.exhalapp
+com.example.stretcherapp
 attr activityAction
 attr activityName
 attr alpha

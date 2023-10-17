@@ -79,7 +79,7 @@ INJECTED from C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\
 INJECTED from C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\debug\AndroidManifest.xml:1:1-8:12
 INJECTED from C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\debug\AndroidManifest.xml:1:1-8:12
 	package
-		ADDED from C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\main\AndroidManifest.xml:2:5-35
+		ADDED from C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\main\AndroidManifest.xml:2:5-39
 		INJECTED from C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\desarrollador5.itisb\Documents\proyectos\FlutterProyects\stretcher_app\android\app\src\debug\AndroidManifest.xml
 	android:versionName

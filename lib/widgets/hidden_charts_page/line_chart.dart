@@ -1,6 +1,6 @@
 import 'package:community_charts_flutter/community_charts_flutter.dart';
-import 'package:exhalapp/pages/charts_page/hidden_charts_page.dart';
-import 'package:exhalapp/providers/shared_pref.dart';
+import 'package:stretcherapp/pages/charts_page/hidden_charts_page.dart';
+import 'package:stretcherapp/providers/shared_pref.dart';
 import 'package:flutter/material.dart';
 import 'package:community_charts_flutter/community_charts_flutter.dart' as charts;
 

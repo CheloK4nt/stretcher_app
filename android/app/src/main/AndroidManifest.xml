@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.exhalapp">
+    package="com.example.stretcherapp">
 
     <!-- Allow Bluetooth -->
     <uses-feature android:name="android.hardware.bluetooth_le" android:required="true" />
@@ -27,7 +27,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
 
    <application
-        android:label="ExhalApp"
+        android:label="StretcherApp"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

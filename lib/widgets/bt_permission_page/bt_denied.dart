@@ -1,4 +1,4 @@
-import 'package:exhalapp/providers/shared_pref.dart';
+import 'package:stretcherapp/providers/shared_pref.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 

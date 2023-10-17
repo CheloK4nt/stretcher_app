@@ -1,5 +1,5 @@
-import 'package:exhalapp/widgets/homepage/options_screen/dark_mode_sw.dart';
-import 'package:exhalapp/widgets/homepage/options_screen/open_app_settings.dart';
+import 'package:stretcherapp/widgets/homepage/options_screen/dark_mode_sw.dart';
+import 'package:stretcherapp/widgets/homepage/options_screen/open_app_settings.dart';
 import 'package:flutter/material.dart';
 
 class OptionsScreen extends StatefulWidget {
