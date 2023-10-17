@@ -20,9 +20,9 @@ class StartExamPage extends StatefulWidget {
 }
 
 class _StartExamPageState extends State<StartExamPage> {
-  final String SERVICE_UUID = "4fafc201-1fb5-459e-8fcc-c5c9c331914b";
-  final String CHARACTERISTIC_UUID = "beb5483e-36e1-4688-b7f5-ea07361b26a8";
-  final String TARGET_CHARACTERISTIC = "beb5482e-36e1-4688-b7f5-ea07361b26a8";
+  final String SERVICE_UUID = "3fafc201-1fb5-459e-8fcc-c5c9c331914b";
+  final String CHARACTERISTIC_UUID = "beb5486e-36e1-4688-b7f5-ea07361b26a8";
+  final String TARGET_CHARACTERISTIC = "beb5485e-36e1-4688-b7f5-ea07361b26a8";
   bool isReady = false;
   bool tcReady = false;
   Stream<List<int>>? stream;
@@ -226,7 +226,7 @@ class _StartExamPageState extends State<StartExamPage> {
     }
 
     Timer(const Duration(seconds: 8), () {
-      if (!isReady) {
+      if (mounted && !isReady) {
         writeData('0');
         disconnectFromDevice();
         Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const HomePage()), (Route route) => false);
@@ -322,7 +322,7 @@ class _StartExamPageState extends State<StartExamPage> {
           );
         // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(snack);
-    }
+      }
     }
 
   }
