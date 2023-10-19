@@ -58,6 +58,7 @@ analysis_benchmark.json
 .pub-preload-cache/
 .pub-cache/
 .pub/
+/.pub/
 build/
 /build/
 build\
