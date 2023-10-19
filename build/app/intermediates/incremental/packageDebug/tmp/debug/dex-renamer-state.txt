@@ -1,4 +1,4 @@
-#Tue Oct 17 11:18:54 CLST 2023
+#Thu Oct 19 16:48:54 CLST 2023
 base.0=C\:\\Users\\desarrollador5.itisb\\Documents\\proyectos\\FlutterProyects\\stretcher_app\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

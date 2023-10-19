@@ -298,7 +298,7 @@ class _ChartsPageState extends State<ChartsPage> {
               }
             },
           ),
-        )
+        ),
       );
   }
 

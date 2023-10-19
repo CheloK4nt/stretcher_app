@@ -1,4 +1,5 @@
 import 'package:stretcherapp/pages/charts_page/start_exam_page.dart';
+import 'package:stretcherapp/pages/send_values_page/send_values_page.dart';
 import 'package:stretcherapp/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
@@ -37,7 +38,8 @@ class _FindDevicesScreenState extends State<FindDevicesScreen> {
                       r.device.connect();
                     }
                     if (context.mounted) {
-                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => StartExamPage(device: r.device)));
+                      // Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => StartExamPage(device: r.device)));
+                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => SendValuesPage(device: r.device,)));
                     }
                   }
                 ),
