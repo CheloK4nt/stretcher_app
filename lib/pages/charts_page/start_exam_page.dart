@@ -20,17 +20,15 @@ class StartExamPage extends StatefulWidget {
 }
 
 class _StartExamPageState extends State<StartExamPage> {
-  final String SERVICE_UUID = "3fafc201-1fb5-459e-8fcc-c5c9c331914b";
-  final String CHARACTERISTIC_UUID = "beb5486e-36e1-4688-b7f5-ea07361b26a8";
-  final String TARGET_CHARACTERISTIC = "beb5485e-36e1-4688-b7f5-ea07361b26a8";
+  final String SERVICE_UUID =           "3fafc201-1fb5-459e-8fcc-c5c9c331914b";
+  final String CHARACTERISTIC_UUID =    "beb5486e-36e1-4688-b7f5-ea07361b26a8";
+  final String TARGET_CHARACTERISTIC =  "beb5485e-36e1-4688-b7f5-ea07361b26a8";
   bool isReady = false;
   bool tcReady = false;
-  Stream<List<int>>? stream;
   String selectedCut = "x";
   late BluetoothCharacteristic targetCharacteristic;
-
-  int tapCount = 0;
-  bool comparativeMode = false;
+  Stream<List<int>>? stream;
+  final dataStreamController = StreamController<String>();
   
   @override
   void initState() {   
@@ -77,29 +75,12 @@ class _StartExamPageState extends State<StartExamPage> {
               children: [
                 Padding(
                   padding: EdgeInsets.all((height * width) * 0.00009),
-                  child: InkWell(
-                    onTap: (){
-                      setState(() {
-                        tapCount = tapCount + 1;
-                      });
-                      if (tapCount == 10) {
-                        _pinCodeDialog();
-                        setState(() {
-                          tapCount = 0;
-                        });
-                      }
-                    },
-                    focusColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    splashColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    child: Text(
-                      "Seleccione el método de corte",
-                      style: TextStyle(
-                        fontSize: (height * width) * 0.00008,
-                        fontWeight: FontWeight.w200,
-                        color: Theme.of(context).colorScheme.tertiary,
-                      ),
+                  child: Text(
+                    "Seleccione valor a enviar",
+                    style: TextStyle(
+                      fontSize: (height * width) * 0.00008,
+                      fontWeight: FontWeight.w200,
+                      color: Theme.of(context).colorScheme.tertiary,
                     ),
                   ),
                 ),
@@ -123,7 +104,7 @@ class _StartExamPageState extends State<StartExamPage> {
                         ),
                         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 8),
                         child: Text(
-                          "Máx.",
+                          "1",
                           style: TextStyle(color: (selectedCut == "1")?Colors.white :const Color(0xFF7A7A7A)),
                         ),
                       ),
@@ -135,18 +116,18 @@ class _StartExamPageState extends State<StartExamPage> {
                       borderRadius: BorderRadius.circular(25),
                       onTap: (){
                         setState(() {
-                          selectedCut = "2";
+                          selectedCut = "0";
                         });
                       },
                       child: Ink(
                         decoration: BoxDecoration(
-                          color: (selectedCut == "2")?Colors.blue :const Color(0xFFD9D9D9),
+                          color: (selectedCut == "0")?Colors.blue :const Color(0xFFD9D9D9),
                           borderRadius: BorderRadius.circular(25)
                         ),
                         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 8),
                         child: Text(
-                          "C50.",
-                          style: TextStyle(color: (selectedCut == "2")?Colors.white :const Color(0xFF7A7A7A)),
+                          "0",
+                          style: TextStyle(color: (selectedCut == "0")?Colors.white :const Color(0xFF7A7A7A)),
                         ),
                       ),
                     ),
@@ -154,47 +135,42 @@ class _StartExamPageState extends State<StartExamPage> {
                   ],
                 ),
             /* ========== FIN SELECTOR MODO DE CORTE ========== */
-                Padding(
-                  padding: EdgeInsets.only(top: height * 0.04),
-                  child: (tcReady == true)
-                  ?ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular((height * width) * 0.00006),
+                StreamBuilder<String>(
+                  stream: dataStreamController.stream,
+                  initialData: "",
+                  builder: (context, snapshot) {
+                    return Padding(
+                      padding: EdgeInsets.only(top: height * 0.04),
+                      child: (tcReady == true)
+                      ?ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular((height * width) * 0.00006),
+                          ),
+                          backgroundColor: const Color(0xFFBDEFFF),
+                          foregroundColor: const Color(0xFF009ACC),
+                          // disabledBackgroundColor: const Color.fromARGB(255, 183, 183, 183),
+                          // disabledForegroundColor: const Color.fromARGB(255, 84, 84, 84),
+                          disabledForegroundColor: Colors.transparent,
+                          disabledBackgroundColor: Colors.transparent,
+                          side: BorderSide(
+                            color: (selectedCut != "x")?Colors.blue :Colors.transparent,
+                          ),
+                          elevation: (selectedCut != "x")?5 :0,
+                        ),
+                        onPressed: (selectedCut != "x")
+                        ?(){
+                          writeData(selectedCut);
+                        }
+                        :null,
+                        child: Text("Iniciar examen\nData recibida: ${snapshot.data}", style: TextStyle(fontWeight: FontWeight.w400),),
+                      )
+                      :const LinearProgressIndicator(
+                        color: Color(0xFF0071E4),
                       ),
-                      backgroundColor: const Color(0xFFBDEFFF),
-                      foregroundColor: const Color(0xFF009ACC),
-                      // disabledBackgroundColor: const Color.fromARGB(255, 183, 183, 183),
-                      // disabledForegroundColor: const Color.fromARGB(255, 84, 84, 84),
-                      disabledForegroundColor: Colors.transparent,
-                      disabledBackgroundColor: Colors.transparent,
-                      side: BorderSide(
-                        color: (selectedCut != "x")?Colors.blue :Colors.transparent,
-                      ),
-                      elevation: (selectedCut != "x")?5 :0,
-                    ),
-                    onPressed: (selectedCut != "x")
-                    ?(){
-                      writeData(selectedCut);
-                      if (comparativeMode == true) {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => HiddenChartsPage(device: widget.device, cut_method: selectedCut,)));
-                      } else {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChartsPage(device: widget.device, cut_method: selectedCut,)));}
-                      }
-                    :null,
-                    child: const Text("Iniciar examen", style: TextStyle(fontWeight: FontWeight.w400),),
-                  )
-                  :const LinearProgressIndicator(
-                    color: Color(0xFF0071E4),
-                  ),
+                    );
+                  }
                 ),
-
-                (comparativeMode == true)
-                  ?const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text("Modo Comparativo"),
-                  )
-                  :const Text("Normal", style: TextStyle(color: Colors.transparent),)
               ],
             ),
           ),
@@ -298,6 +274,7 @@ class _StartExamPageState extends State<StartExamPage> {
 
   /* ==================== WRITE DATA VOID ==================== */
   writeData(String data) async {
+    print("ENVIAR DATO: $data");
     List<BluetoothDevice> connectedDevices = await FlutterBluePlus.instance.connectedDevices;
 
     if (data == "0") {
@@ -324,6 +301,12 @@ class _StartExamPageState extends State<StartExamPage> {
         ScaffoldMessenger.of(context).showSnackBar(snack);
       }
     }
+
+    // Recibir y mostrar los datos enviados por el ESP32
+    stream?.listen((data) {
+      String received = String.fromCharCodes(data);
+      dataStreamController.add(received);
+    });
 
   }
   /* ==================== END WRITE DATA VOID ==================== */
@@ -404,78 +387,4 @@ class _StartExamPageState extends State<StartExamPage> {
   _Pop() {
     Navigator.of(context).pop(true);
   }
-
-  /* ==================== PIN CODE DIALOG  ==================== */
-  Future<bool> _pinCodeDialog() {
-
-    final prefs = UserPrefs();
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
-
-    return showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular((height * width) * 0.0001),
-          side: BorderSide(
-            color: (prefs.darkMode)
-              ?const Color(0xFF0071E4)
-              :const Color(0xFFD3D3D3)
-          )
-        ),
-        actionsAlignment: MainAxisAlignment.center,
-        backgroundColor: (prefs.darkMode)
-          ?const Color(0xFF474864)
-          :Colors.white,
-        title: Text(
-          'Ingrese PIN de seguridad',
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.tertiary,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        content: SizedBox(
-          width: width * 0.8,
-          height: height * 0.07,
-          child: Center(
-            child: PinCodeFields(
-              // activeBorderColor: Colors.transparent,
-              fieldBorderStyle: FieldBorderStyle.bottom,
-              keyboardType: TextInputType.number,
-              autofocus: true,
-              responsive: true,
-              length: 4,
-              obscureText: true,
-              obscureCharacter: "🔵",
-              onComplete: (String value) {
-                if (value == "3927") {
-                  setState(() {
-                    comparativeMode = true;
-                  });
-                }
-                Navigator.of(context).pop(false);
-              },
-              
-            ),
-          ),
-        ),
-        actions: [
-          TextButton(
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(const Color(0xFF0071E4)),
-              foregroundColor: MaterialStateProperty.all(Colors.white),
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular((height*width) * 0.00007)
-                )
-              ),
-            ),
-            onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Cancelar')
-          ),
-        ],
-      ),
-    ).then((value) => false);
-  }
-  /* ==================== END PIN CODE DIALOG  ==================== */
 }
