@@ -75,6 +75,22 @@ class _SendValuesPageState extends State<SendValuesPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+            
+                StreamBuilder<List<int>>(
+                  stream: stream,
+                  builder: (BuildContext context, AsyncSnapshot<List<int>> snapshot) {
+            
+                    if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    }
+            
+                    if (snapshot.connectionState == ConnectionState.active) { /* RECEPCION DE DATOS  */
+                      var currentValue = _dataParser(snapshot.data!);
+                    }
+                    return Text("Posicion Actual: ${snapshot.data != null ? _dataParser(snapshot.data!) : null}", style: TextStyle(fontWeight: FontWeight.w400));
+                  }
+                ),
+
                 Padding(
                   padding: EdgeInsets.all((height * width) * 0.00009),
                   child: Text(
@@ -86,7 +102,7 @@ class _SendValuesPageState extends State<SendValuesPage> {
                     ),
                   ),
                 ),
-
+            
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: width * 0.3),
                   child: TextField(
@@ -98,31 +114,15 @@ class _SendValuesPageState extends State<SendValuesPage> {
                     },
                   ),
                 ),
-
+            
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: height * 0.02),
+                  padding: EdgeInsets.only(top: height * 0.02),
                   child: ElevatedButton(
                     onPressed: (){
                       writeData(valueToSendController.text);
                     },
                     child: const Text("Enviar"),
                   ),
-                ),
-                
-                StreamBuilder<List<int>>(
-                  stream: stream,
-                  builder: (BuildContext context, AsyncSnapshot<List<int>> snapshot) {
-
-                  if (snapshot.hasError) {
-                    return Text('Error: ${snapshot.error}');
-                  }
-
-                  if (snapshot.connectionState == ConnectionState.active) { /* RECEPCION DE DATOS  */
-                    var currentValue = _dataParser(snapshot.data!);
-                  }
-                  return Text("Posicion Actual: ${_dataParser(snapshot.data!)}", style: TextStyle(fontWeight: FontWeight.w400));
-
-                }
                 ),
               ],
             ),
