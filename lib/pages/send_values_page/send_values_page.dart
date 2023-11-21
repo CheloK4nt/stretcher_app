@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:stretcherapp/utils/show_snack_bar.dart';
+import 'package:stretcherapp/widgets/send_values_page/posicion_actual.dart';
 import 'package:stretcherapp/widgets/send_values_page/waiting_connection.dart';
 
 class SendValuesPage extends StatefulWidget {
@@ -68,8 +69,7 @@ class _SendValuesPageState extends State<SendValuesPage> {
   Widget _buildView(bool connected) {
     if (connected) { //si es que el dispositivo esta conectado
       return Center(
-        child: (received != "" && received != null) ?Text("Posición actual: $received") :const Text("Posición actual: No data")
-      );
+        child: PosicionActual(posicion: received));
     } else { // si es que el dispositivo no esta conectado
       return const WaitingConnection(); 
     }
