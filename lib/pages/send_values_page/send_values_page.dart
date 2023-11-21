@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:stretcherapp/utils/show_snack_bar.dart';
@@ -22,7 +25,7 @@ class _SendValuesPageState extends State<SendValuesPage> {
   late BluetoothCharacteristic characteristic;
   late BluetoothCharacteristic targetCharacteristic;
   Stream<List<int>>? stream;
-
+  late String received = "";
 
 
   // ==================== INIT-STATE ==================== //
@@ -34,7 +37,7 @@ class _SendValuesPageState extends State<SendValuesPage> {
     widget.device.state.listen((state) async{
       if (state == BluetoothDeviceState.connected) { // si dispositivo conectado
 
-        discoverServices();
+        await discoverServices();
 
         print("CONECTADO");
         setState(() {
@@ -45,6 +48,7 @@ class _SendValuesPageState extends State<SendValuesPage> {
         showSnackBar(context, "¡Conexión establecida!", Colors.green, 2);
 
       } else if (state == BluetoothDeviceState.disconnected) { // si dispositivo desconectado
+        
         print("DESCONECTADO");
         setState(() {
           _connected = false;
@@ -60,12 +64,13 @@ class _SendValuesPageState extends State<SendValuesPage> {
   }
   // ==================== FIN INIT-STATE ==================== //
 
-
   // ========== _buildView PARA GENERAR EL WIDGET DEPENDIENDO DE ESTADO ========== //
   Widget _buildView(bool connected) {
-    if (connected) {
-      return const Center(child: Text("Conectado"));
-    } else {
+    if (connected) { //si es que el dispositivo esta conectado
+      return Center(
+        child: (received != "" && received != null) ?Text("Posición actual: $received") :const Text("Posición actual: No data")
+      );
+    } else { // si es que el dispositivo no esta conectado
       return const WaitingConnection(); 
     }
   }
@@ -91,7 +96,7 @@ class _SendValuesPageState extends State<SendValuesPage> {
       if (service.uuid.toString() == SERVICE_UUID) {
         for (var characteristic in service.characteristics) {
           if (characteristic.uuid.toString() == CHARACTERISTIC_UUID) {
-            characteristic.setNotifyValue(!characteristic.isNotifying);
+            characteristic.setNotifyValue(true);
             stream = characteristic.value;
           }
           if (characteristic.uuid.toString() == TARGET_CHARACTERISTIC) {
@@ -99,6 +104,17 @@ class _SendValuesPageState extends State<SendValuesPage> {
           }
         }
       }
+    }
+
+    // Recibir y mostrar los datos enviados por el ESP32
+    print("stream listen");
+    if (_firstConnect) {
+      stream?.listen((data) {
+        setState(() {
+          received = String.fromCharCodes(data);
+        });
+        print("Posicion actual: $received");
+      });
     }
   }
   /* ==================== END DISCOVER SERVICES VOID ==================== */
