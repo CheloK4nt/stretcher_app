@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:stretcherapp/utils/show_snack_bar.dart';
+import 'package:stretcherapp/widgets/send_values_page/incremental_input.dart';
 import 'package:stretcherapp/widgets/send_values_page/posicion_actual.dart';
 import 'package:stretcherapp/widgets/send_values_page/waiting_connection.dart';
 
@@ -27,6 +28,7 @@ class _SendValuesPageState extends State<SendValuesPage> {
   late BluetoothCharacteristic targetCharacteristic;
   Stream<List<int>>? stream;
   late String received = "";
+  final _incrementController = TextEditingController();
 
 
   // ==================== INIT-STATE ==================== //
@@ -69,7 +71,16 @@ class _SendValuesPageState extends State<SendValuesPage> {
   Widget _buildView(bool connected) {
     if (connected) { //si es que el dispositivo esta conectado
       return Center(
-        child: PosicionActual(posicion: received));
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: PosicionActual(posicion: received),
+            ),
+            IncrementalInput(controller: _incrementController),
+          ],
+        ));
     } else { // si es que el dispositivo no esta conectado
       return const WaitingConnection(); 
     }

@@ -13,10 +13,23 @@ class FindDevicesScreen extends StatefulWidget {
 }
 
 class _FindDevicesScreenState extends State<FindDevicesScreen> {
+
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
 
     FlutterBluePlus.instance.startScan(timeout: const Duration(seconds: 4));
+  }
+
+  @override
+  void dispose() {
+  super.dispose();
+  
+  FlutterBluePlus.instance.stopScan();
+}
+
+  @override
+  Widget build(BuildContext context) {
 
     return Scaffold(
       appBar: AppBar(
